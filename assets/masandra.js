@@ -14,6 +14,7 @@ $('#addButton').click(function (e) {
 $('#clearList').click(function (e) {
     e.preventDefault();
     localStorage.clear();
+    $("#ingredientList").empty();
 });
 
 

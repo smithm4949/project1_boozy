@@ -34,3 +34,7 @@
     flex-wrap: wrap;
     margin: 10px;
 } 
+
+#clearList {
+    margin: 20px 0px;
+}
