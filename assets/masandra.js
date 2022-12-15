@@ -25,6 +25,7 @@ function displayIngredient() {
         newIngBtn.text(userInputIngEl);
         newIngBtn.val(userInputIngEl);
         saveIngredient();
+        fetchIngredients();
 // !TO DO - Look up method to remove the duplicate ingredient buttons
 
     function saveIngredient (){
@@ -40,3 +41,18 @@ function displayIngredient() {
         $('#userInputIng').val("");   
     };
 };
+
+function fetchIngredients () {
+    var userInputIngEl = $('#userInputIng').val();
+    var appUrl = ("http://www.thecocktaildb.com/api/json/v1/1/search.php?i="+userInputIngEl)
+    // var inputUrl = appUrl.concat(userInputIngEl);
+
+    fetch(appUrl)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data);
+        });
+};
+
