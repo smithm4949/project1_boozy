@@ -1,5 +1,5 @@
 .column {
-    border: solid 1px #ce72e0
+    border: solid 2px #ce72e0
 }
 
 .section.is-medium {
@@ -14,4 +14,16 @@
 
 .goButton {
     width: 25vw
+}
+
+#ingredientList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.item {
+    flex: auto;
+    margin: 5px;
+    max-width: max-content;
 }
