@@ -6,7 +6,7 @@ $('#getStarted').click(function (e) {
     localStorage.clear();
 });
 
-$('#goButton').click(function (e) {
+$('#addButton').click(function (e) {
     e.preventDefault();
     displayIngredient();
 });
@@ -29,6 +29,8 @@ function displayIngredient() {
         saveIngredient();
 
 // !TO DO - Look up method to remove the duplicate ingredient buttons
+// !Nice to have - ability to remove an ingredient by clicking on the button
+
 };
 
 function fetchIngredients () {
@@ -51,37 +53,22 @@ function fetchIngredients () {
                     console.log(index);
                     console.log(value);
                     for (i =0; i < value.length; i++) {
-                        //! TODO Add an image attribute later
-                        var newDrinkThumb = $('<button id="drinkName" class="column"></button>');
+                    //! TODO Add an image attribute later
                         var drinkNameApi = value[i].strDrink;
                         console.log(drinkNameApi);
-
+                        var newDrinkThumb = $('<button class="drinkName column"></button>').text(drinkNameApi);
                         newDrinkThumb.appendTo($("#drinkList"));
-                        $('#drinkName').text(drinkNameApi);
+                        //saveFirstList(); <---In limbo
 
+                    /*
+                        !TO DO - Another fetch to get cocktail details by id (when a user clicks
+                        on one of the images and names of the drinks, the app will show the user
+                        the details from the api
+                    */
                     };
                 });
-  
-
-                /* Testing why this for loop doesn't work
-                // For loop to go through the object and grab each name and each image
-                for (i =0; i < firstIngredientFilter.length; i++) {
-                var drinkNameApi = firstIngredientFilter.drinks[0].strDrink;
-                // var drinkImgApi = firstIngredientFilter.drinks[i].strDrinkThumb;
-                // console.log(drinkImgApi);
-            
-            
-                var newDrinkThumb = $('<button id="drinkName" class="column">Drink 1<figure  class="image is-128x128"><img id="drinkImg" src="https://bulma.io/images/placeholders/256x256.png"></figure></button>');
-                newDrinkThumb.appendTo($("#drinkList"));
-                $('#drinkName').text(drinkNameApi);
-
-                // $('#drinkImg').val(drinkNameApi);
-                };
-                */
-
             };
         });
-
 };
 
 function saveIngredient (){
@@ -90,10 +77,26 @@ function saveIngredient (){
     // Use the running list object and add on new items to the old items
     oldItems.push(newItem);
 
-    // Remove duplicates so cities are not repeating in the buttons of previously searched cities history
+    // Remove duplicates 
     var uniqueItems = [...new Set(oldItems)];
     // Store the unique items - no duplicates
     localStorage.setItem("Ingredients", JSON.stringify(uniqueItems));  
     $('#userInputIng').val("");   
 };
 
+/* LIMBO
+
+IF you want to store the search results for first ingredient
+function saveFirstList (){
+    var oldItems = JSON.parse(localStorage.getItem("First-List")) || [];
+    var newItem = drinkNameApi;
+    // Use the running list object and add on new items to the old items
+    oldItems.push(newItem);
+
+    // Remove duplicates 
+    var uniqueItems = [...new Set(oldItems)];
+    // Store the unique items - no duplicates
+    localStorage.setItem("First-List", JSON.stringify(uniqueItems));  
+};
+
+*/
