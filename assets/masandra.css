@@ -1,0 +1,17 @@
+.column {
+    border: solid 1px #ce72e0
+}
+
+.section.is-medium {
+    padding: 2rem 4rem;
+}
+
+.quote {
+    font-size: 1.5rem;
+    font-weight: 200;
+    text-align: center;
+}
+
+.goButton {
+    width: 25vw
+}

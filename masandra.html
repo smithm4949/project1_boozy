@@ -15,12 +15,14 @@
 
     <body>
         <header>
+
+          <!--NAVIGATION BAR-->
             <nav class="navbar" role="navigation" aria-label="main navigation">
                 <div class="navbar-brand">
-                  <a class="navbar-item" href="https://bulma.io">
-                    <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
-                  </a>
-              
+
+                  <figure class="image is-128x128">
+                    <img src="./assets/images/Logo.png">
+                  </figure>
                   <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
@@ -75,11 +77,72 @@
                   </div>
                 </div>
               </nav>
+            <!--END OF NAV BAR-->
         </header>
         
         <main>
+            <!--DIRECTIONS -->
+            <section id="introCard" class="section" style="display:block">
+              <h1 class="title">What's sippin tonight?</h1>
+              <h2 class="subtitle">
+                Welcome to your new favorite drink app! Type in an ingredient you want in your drink and pick a <strong>ConCocktail</strong> for calorie information.
+              </h2>
+              <button id="getStarted" class="button is-medium is-responsive is-primary">
+                Get Started
+              </button>
+            </section>
+            <!-- END OF DIRECTIONS -->
 
+
+            <!--MAIN CONTENT -->
+            <section id="ingredientSection" class="section is-medium" style="display:none">
+              <h1 class="title">Ingredients</h1>
+              <h2 class="subtitle">
+               Type in what ingredient you would like in your drink. You can input multiple <strong>ingredients</strong>!
+              </h2>
+
+              <div class="field has-addons">
+                <div>
+                  <input id="userInputIng" class="input is-primary" type="text" placeholder="Input ingredient">
+                </div>
+                <div id="goButton" class="control">
+                  <a class="button is-primary is-light is-medium">GO</a>
+                </div>
+              </div>
+              
+              <div class="columns is-mobile">
+                <div id="ingredientList" class="column is-three-quarters-mobile is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd">
+                </div>
+                <div class="column">Drink 1</div>
+                <div class="column">Drink 2</div>
+                <div class="column">Drink 3</div>
+                <div class="column">Drink 4</div>
+              </div>
+            </section>
+            <!--END OF MAIN CONTENT -->
         </main>
+
+        <!--FOOTER-->
+        <div class="card">
+          <div class="card-content">
+            <p class="title quote">
+              “Dear alcohol, We had a deal where you would make me funnier, smarter, and a better dancer… I saw the video… we need to talk.”
+            </p>
+          </div>
+          <footer class="card-footer">
+            <p class="card-footer-item">
+              <span>
+                View on <a href="https://twitter.com/codinghorror/status/506010907021828096">Twitter</a>
+              </span>
+            </p>
+            <p class="card-footer-item">
+              <span>
+                Share on <a href="#">Facebook</a>
+              </span>
+            </p>
+          </footer>
+        </div>
+        <!--END OF FOOTER-->
 
             <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
             <script
