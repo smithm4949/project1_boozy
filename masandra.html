@@ -23,60 +23,7 @@
                   <figure class="image is-128x128">
                     <img src="./assets/images/Logo.png">
                   </figure>
-                  <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                  </a>
                 </div>
-              
-                <div id="navbarBasicExample" class="navbar-menu">
-                  <div class="navbar-start">
-                    <a class="navbar-item">
-                      Home
-                    </a>
-              
-                    <a class="navbar-item">
-                      Documentation
-                    </a>
-              
-                    <div class="navbar-item has-dropdown is-hoverable">
-                      <a class="navbar-link">
-                        More
-                      </a>
-              
-                      <div class="navbar-dropdown">
-                        <a class="navbar-item">
-                          About
-                        </a>
-                        <a class="navbar-item">
-                          Jobs
-                        </a>
-                        <a class="navbar-item">
-                          Contact
-                        </a>
-                        <hr class="navbar-divider">
-                        <a class="navbar-item">
-                          Report an issue
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-              
-                  <div class="navbar-end">
-                    <div class="navbar-item">
-                      <div class="buttons">
-                        <a class="button is-primary">
-                          <strong>Sign up</strong>
-                        </a>
-                        <a class="button is-light">
-                          Log in
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </nav>
             <!--END OF NAV BAR-->
         </header>
         
@@ -98,7 +45,7 @@
             <section id="ingredientSection" class="section is-medium" style="display:none">
               <h1 class="title">Ingredients</h1>
               <h2 class="subtitle">
-               Type in what ingredient you would like in your drink. You can input multiple <strong>ingredients</strong>!
+               Type in what spirit you would like in your drink. You can input multiple <strong>ingredients</strong>!
               </h2>
 
               <div class="field has-addons">
@@ -111,15 +58,17 @@
               </div>
               
               <div class="columns is-mobile">
-                <div class="column is-three-quarters-mobile is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd">
+                <div class="">
                   <ul id="ingredientList" >
                   </ul>
                 </div>
-                <div class="column">Drink 1</div>
-                <div class="column">Drink 2</div>
-                <div class="column">Drink 3</div>
-                <div class="column">Drink 4</div>
               </div>
+              
+              <div class="container is-fluid">
+                <ul id="drinkList">
+                </ul>
+              </div>
+
               <div id="clearList" class="control">
                 <a class="button is-danger is-light is-medium">Clear Ingredients Listed</a>
               </div>

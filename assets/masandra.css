@@ -27,3 +27,9 @@
     margin: 5px;
     max-width: max-content;
 }
+
+#drinkList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+} 
