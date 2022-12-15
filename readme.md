@@ -15,8 +15,11 @@ The group members involved in this project are MaSandra Ewing, Alexander Carr, M
 The group leader is Myles Smith. The roles are being divided as follows:
 
 Myles: HTML, Presentation/pitch
+
 Masandra: JavaScript
+
 Malik: CSS, Presentation/pitch
+
 Alexander: JavaScript
 
 ## Project status
