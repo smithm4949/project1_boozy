@@ -1,31 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="./assets/styles.css" />
-    <script defer src="./assets/homecode.js"></script>
-    <title>ConCocktail</title>
-  </head>
-  <body>
-    <main>
-      <section id="homepage_main_section">
-        <h1 id="homepage_h1"></h1>
-        <ul id="search_results_list">
-          <!-- List of drink details will go here, like: -->
-          <!-- Ingredients, calories, activity + time -->
-          <!-- Anything else we can easily get from the UI -->
-        </ul>
-      </section>
-      <aside>
-        <!-- For  "secondary" content, like the search inputs -->
-        <label for="search_input_text"></label>
-          Search by ingredients, like "vodka, lime"
-        </label>
-        <input id="search_input_text" type="text" />
-        <button type="button" id="search_button">Search</button>
-      </aside>
-    </main>
-  </body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <!-- CSS only -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+        <link rel="stylesheet" href="./assets/styles.css" />
+        <title>ConCocktail</title>
+    </head>
+
+    <body>
+        <header>
+          <!--NAVIGATION BAR-->
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+
+                  <figure class="logo image is-128x128">
+                    <img src="./assets/images/Logo.png">
+                  </figure>
+                </div>
+            <!--END OF NAV BAR-->
+        </header>
+        
+        <main>
+            <!--DIRECTIONS -->
+            <section id="introCard" class="section" style="display:block">
+              <h1 class="title">What's sippin tonight?</h1>
+              <h2 class="subtitle">
+                Welcome to your new favorite drink app! Type in a spirit you want in your drink and pick a <strong>ConCocktail</strong> for calorie information.
+              </h2>
+              <button id="getStarted" class="button is-medium is-responsive is-primary">
+                Get Started
+              </button>
+            </section>
+            <!-- END OF DIRECTIONS -->
+
+
+            <!--MAIN CONTENT -->
+            <section id="ingredientSection" class="section is-medium" style="display:none">
+              <h1 class="title">Ingredients</h1>
+              <h2 class="subtitle">
+               Type in what spirit you would like in your <strong>drink</strong>!
+              </h2>
+
+              <div class="field has-addons">
+                <div>
+                  <input id="userInputIng" class="input is-primary" type="text" placeholder="Input ingredient">
+                </div>
+                <div id="addButton" class="control">
+                  <a class="button is-primary is-light is-medium">Add</a>
+                </div>
+              </div>
+
+              <div id="clearList" class="control">
+                <a class="button is-danger is-light is-small">Clear Ingredients Listed</a>
+              </div>
+              
+              <div class="columns is-mobile">
+                <div class="">
+                  <ul id="ingredientList" >
+                  </ul>
+                </div>
+              </div>
+              
+              <div class="container is-fluid">
+                <ul id="drinkList">
+                </ul>
+              </div>
+
+            </section>
+
+            <!--END OF MAIN CONTENT -->
+        </main>
+
+        <!--FOOTER-->
+        <div class="card">
+          <div class="card-content">
+            <p class="title quote">
+              “Dear alcohol, We had a deal where you would make me funnier, smarter, and a better dancer… I saw the video… we need to talk.”
+            </p>
+          </div>
+          </footer>
+        </div>
+        <!--END OF FOOTER-->
+
+            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+            <script
+            src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+            integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+            crossorigin="anonymous"
+            ></script>
+            <script src="./assets/homecode.js"></script> 
+    </body>
 </html>

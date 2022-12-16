@@ -1,27 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script defer src="../assets/drinkdetailpage.js"></script>
-    <link href="./assets/styles.css" />
-    <title>Drink Details</title>
-  </head>
-  <body>
-    <main>
-      <section id="drink_detail_main_section">
-        <h1 id="drink_detail_h1"></h1>
-        <ul id="drink_detail_list_wrapper">
-          <!-- List of drink details will go here, like: -->
-          <!-- Ingredients, calories, activity + time -->
-          <!-- Anything else we can easily get from the UI -->
-        </ul>
-      </section>
-      <aside>
-        <!-- Placeholder section for any "secondary" content we want to include -->
-        <!-- maybe we have contact info or list our names? or links other drinks?-->
-      </aside>
-    </main>
-  </body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <!-- CSS only -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+        <link rel="stylesheet" href="./assets/styles.css" />
+        <title>ConCocktail - Drink Search</title>
+    </head>
+
+<body>
+
+  <header>
+    <!--NAVIGATION BAR-->
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <figure class="logo image is-128x128">
+            <img src="../assets/images/Logo.png">
+          </figure>
+        </div>
+    <!--END OF NAV BAR-->
+  </header>
+
+  <main>
+
+    <div id="right-panel">
+            <h2 id="ingredientDisplay"></h2>
+        <div id="bottom-panel">
+            <h2 id="textBeforeBottomContainer"></h2>
+        </div>
+    </div>
+
+
+      <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+      <script
+      src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+      integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+      crossorigin="anonymous"
+      ></script>        
+      <script src="../assets/drinkdetailpage.js"></script>
+    </body>   
 </html>

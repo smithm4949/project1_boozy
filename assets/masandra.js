@@ -60,6 +60,8 @@ function fetchIngredients () {
                         var newDrinkThumb = $('<button class="drinkName column"></button>').text(drinkNameApi);
                         newDrinkThumb.appendTo($("#drinkList"));
                         //saveFirstList(); <---In limbo
+                    
+                    // TODO - 
 
                     /*
                         !TO DO - Another fetch to get cocktail details by id (when a user clicks
