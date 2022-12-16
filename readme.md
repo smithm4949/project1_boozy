@@ -10,14 +10,15 @@ This website is not currently deployed
 
 ## Authors and acknowledgment
 
-The group members involved in this project are MaSandra Ewing, Alexander Carr, Myles Smith, and Malik Ennis
+The group members involved in this project are MaSandra Ewing, Alexander Carr, and Myles Smith
 
 The group leader is Myles Smith. The roles are being divided as follows:
 
 Myles: HTML, Presentation/pitch
-Masandra: JavaScript
-Malik: CSS, Presentation/pitch
-Alexander: JavaScript
+
+Masandra: CSS, JavaScript
+
+Alexander: CSS, JavaScript
 
 ## Project status
 

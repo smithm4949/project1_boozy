@@ -58,17 +58,7 @@ function fetchIngredients () {
                         var drinkNameApi = value[i].strDrink;
                         console.log(drinkNameApi);
                         var newDrinkThumb = $('<button class="drinkName column"></button>').text(drinkNameApi);
-                        //newDrinkThumb.attr(attributeName, value);
                         newDrinkThumb.appendTo($("#drinkList"));
-
-
-                        newDrinkThumb.click(function (e) { 
-                            console.log(e.target.innerHTML)
-                            e.preventDefault();
-                            var urlPath = "./pages/drinkdetail.html?drink="+e.target.innerHTML
-                            window.location.replace(urlPath)                        
-                        });
-
                         //saveFirstList(); <---In limbo
                     
                     // TODO - 
