@@ -4,6 +4,18 @@ const drink = params.get('drink');
 var ingredientDisplayEl = document.getElementById("ingredientDisplay")
 var maxValue
 var drinkSearch = drink
+var phrasesArray = []
+var phrase1
+var phrase2
+var phrase3
+var phrase4
+var phrase5
+var phrase6
+var phrase7
+var phrase8
+var phrase9
+var phrase10
+var randomIndex
 
 
     //get ingredients and quantities
@@ -269,64 +281,89 @@ var drinkSearch = drink
     })
 
 function getPhrase(){
-    var phrase1 = {
+    phrase1 = {
         phrase: "You can burn this off by singing in the shower for ",
         phrase2: " minutes!",
         phrase3: " hour!",
         phrase4: " hours!",
         caloriesBurnedPer1M: 5,
+        giphy: "singing in the shower",
     }
-    var phrase2 = {
+    phrase2 = {
         phrase: "Listen to some dad jokes and laugh for ",
-        phrase2: " minutes and you'll burn this sucker off!",
-        phrase3: " hour and you'll burn this sucker off!",
-        phrase4: " hours and you'll burn this sucker off!",
+        phrase2: " minutes and these calories are gone!",
+        phrase3: " hour and these calories are gone!",
+        phrase4: " hours and these calories are gone!",
         caloriesBurnedPer1M: 3,
+        giphy: "laughing",
     }
-    var phrase3 = {
+    phrase3 = {
         phrase: "Active SEX(!) will clear this out of your system in ",
         phrase2: " minutes!",
         phrase3: " hour!",
         phrase4: " hours!",
         caloriesBurnedPer1M: 6.67,
+        giphy: "sex",
     }
-    var phrase4 = {
+    phrase4 = {
         phrase: "Brush your teeth for ",
         phrase2: " minutes and this is out of your system!",
         phrase3: " hour and this is out of your system!",
         phrase4: " hours and this is out of your system!",
         caloriesBurnedPer1M: 3.33,
+        giphy: "teeth",
     }
-    var phrase5 = {
+    phrase5 = {
         phrase: "If you whip your head back and forth to Willow Smith's song, you will burn this off in ",
         phrase2: " minutes...if you go crazy enough.",
         phrase3: " hour...if you go crazy enough.",
         phrase4: " hours...if you go crazy enough.",
         caloriesBurnedPer1M: 12.5,
+        giphy: "head whip",
     }
-    var phrase6 = {
+    phrase6 = {
         phrase: "Kissing for ",
         phrase2: " minutes will burn this off, if it's intimate enough!",
         phrase3: " hour will burn this off, if it's intimate enough!",
         phrase4: " hours will burn this off, if it's intimate enough!",
-        caloriesBurnedPer1M: 3
+        caloriesBurnedPer1M: 3,
+        giphy: "kissing",
     }
-    var phrase7 = {
+    phrase7 = {
         phrase: "Walk your dog for ",
         phrase2: " minutes and you'll have this burned off, and your dog will love you even more!",
         phrase3: " hour and you'll have this burned off, and your dog will love you even more!",
         phrase4: " hours and you'll have this burned off, and your dog will love you even more!",
-        caloriesBurnedPer1M: 3.33
+        caloriesBurnedPer1M: 3.33,
+        giphy: "walk dog",
     }
-    var phrase8 = {
-        phrase: "Go horse riding for ",
-        phrase2: " minutes and these calories are gone. I'm not sure if we're thinking about the same riding, though.",
-        phrase3: " hour and these calories are gone. I'm not sure if we're thinking about the same riding, though.",
-        phrase4: " hours and these calories are gone. I'm not sure if we're thinking about the same riding, though.",
+    phrase8 = {
+        phrase: "Ride a horse for ",
+        phrase2: " minutes and these calories are gone. Giddyup!",
+        phrase3: " hour and these calories are gone. Giddyup!",
+        phrase4: " hours and these calories are gone. Giddyup!",
         caloriesBurnedPer1M: 11.11,
+        giphy: "ride horse",
     }
-    var phrasesArray = [phrase1, phrase2, phrase3, phrase4, phrase5, phrase6, phrase7, phrase8]
-    var randomIndex = Math.floor(Math.random() * phrasesArray.length);
+    phrase9 = {
+        phrase: "Running away from a predator for ",
+        phrase2: " minutes will burn this off.",
+        phrase3: " hour will burn this off.",
+        phrase4: " hours will burn this off.",
+        caloriesburnedper1M: 22,
+        giphy: "sprint away",
+    }
+    phrase10 = {
+        phrase: "Look in the mirror and cry for ",
+        phrase2: " minutes and you'll at least have this burned off.",
+        phrase3: " hour and you'll at least have this burned off.",
+        phrase4: " hours and you'll at least have this burned off.",
+        caloriesBurnedPer1M: 1.3,
+        giphy: "cry",
+    }
+
+    phrasesArray = [phrase1, phrase2, phrase3, phrase4, phrase5, phrase6, phrase7, phrase8, phrase9, phrase10]
+    randomIndex = Math.floor(Math.random() * phrasesArray.length);
     var phraseCals = phrasesArray[randomIndex].caloriesBurnedPer1M
     console.log(maxValue)
     maxValue = maxValue/phraseCals
@@ -336,20 +373,39 @@ function getPhrase(){
         var phraseEl = document.createElement("h2")
         phraseEl.textContent=phrasesArray[randomIndex].phrase + maxValue + phrasesArray[randomIndex].phrase2
         ingredientDisplayEl.append(phraseEl)
+        addGif()
     }else if(maxValue<90){
         maxValue = maxValue/60
         maxValue = maxValue.toFixed(0)
         var phraseEl = document.createElement("h2")
         phraseEl.textContent=phrasesArray[randomIndex].phrase + maxValue + phrasesArray[randomIndex].phrase3
         ingredientDisplayEl.append(phraseEl)
+        addGif()
     }else{
         maxValue = maxValue/60
         maxValue = maxValue.toFixed(0)
         var phraseEl = document.createElement("h2")
         phraseEl.textContent=phrasesArray[randomIndex].phrase + maxValue + phrasesArray[randomIndex].phrase4
         ingredientDisplayEl.append(phraseEl)
+        addGif()
     }
     
 
     
 }
+
+
+function addGif(){
+    fetch("https://api.giphy.com/v1/gifs/search?api_key=A6HK07mogH7JM9izoGmrzng2EUhXVWtG&q="+phrasesArray[randomIndex].giphy+"&limit=25&offset=0&rating=g&lang=en")
+    .then(function (response){
+        return response.json();
+        })
+        .then(function (data){
+        console.log(data)
+        var randomGif = Math.floor(Math.random() * 25);
+        var gifLink = data.data[randomGif].images.downsized.url
+        var gifEl = document.createElement("img")
+        console.log(gifLink)
+        gifEl.setAttribute("src", gifLink)
+        ingredientDisplayEl.append(gifEl)
+})}
