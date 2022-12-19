@@ -19,10 +19,12 @@ var phrase9
 var phrase10
 var randomIndex
 
+$( document ).ready(function() {
+
     //get ingredients and quantities
     fetch("https://www.thecocktaildb.com/api/json/v1/1/search.php?s="+drinkSearch)
     .then(function (response){
-        ingredientDisplayEl.textContent=""
+        // ingredientDisplayEl.textContent=""
         return response.json();
         })
         .then(function (data){
@@ -46,7 +48,7 @@ var randomIndex
         if(quantities[0]==null){
             var newDrinkEl = document.createElement("h4")
             newDrinkEl.textContent="Drink not available. :( Please try another."
-            ingredientDisplayEl.append(newDrinkEl)
+            // ingredientDisplayEl.append(newDrinkEl)
             return
          }
         // Create new array of measurement values with name (ie "shot") removed
@@ -405,9 +407,11 @@ function addGif(){
         .then(function (data){
         console.log(data)
         var randomGif = Math.floor(Math.random() * 25);
-        var gifLink = data.data[randomGif].images.downsized.url
-        var gifEl = document.createElement("img")
-        console.log(gifLink)
-        gifEl.setAttribute("src", gifLink)
-        ingredientDisplayEl.append(gifEl)
+        // var gifLink = data.data[randomGif].images.downsized.url
+        // var gifEl = document.createElement("img")
+        // console.log(gifLink)
+        // gifEl.setAttribute("src", gifLink)
+        $('#gif').attr("src", data.data[randomGif].images.downsized.url);
+        //ingredientDisplayEl.append(gifEl)
 })}
+});
