@@ -1,3 +1,5 @@
+// ISSUE: Test on Adam & Eve - Title only shows "Adam"
+
 const url = new URL(window.location.href);
 const params = new URLSearchParams(url.search);
 const drink = params.get('drink');
@@ -17,7 +19,6 @@ var phrase9
 var phrase10
 var randomIndex
 
-
     //get ingredients and quantities
     fetch("https://www.thecocktaildb.com/api/json/v1/1/search.php?s="+drinkSearch)
     .then(function (response){
@@ -27,6 +28,8 @@ var randomIndex
         .then(function (data){
         //console log drink data
          console.log(data)
+         var picUrl = data.drinks[0].strDrinkThumb
+         $('#drinkPic').attr('src', picUrl);
          
         // Extract values from data.drinks[0] object and store in array
         const values = Object.entries(data.drinks[0]);
@@ -244,7 +247,7 @@ var randomIndex
             if(quantities[0]==null){
                 var newDrinkEl = document.createElement("h4")
                 newDrinkEl.textContent="Drink not available. :( Please try another."
-                ingredientDisplayEl.append(newDrinkEl)
+                //ingredientDisplayEl.append(newDrinkEl)
             return
             }else{
                 caloriesTotal += quantityGrams[i]/100*calorieValues[i]
@@ -252,15 +255,17 @@ var randomIndex
             }
         }
 
-        var newDrinkEl2 = document.createElement("h2")
-                newDrinkEl2.textContent=drinkSearch
-                ingredientDisplayEl.append(newDrinkEl2)
+        // var newDrinkEl2 = document.createElement("h2")
+        //         newDrinkEl2.textContent=drinkSearch
+                // Replaced code for new card Bulma
+                // ingredientDisplayEl.append(newDrinkEl2)
+            $('#drinkTitle').text(drinkSearch) // Text for the drink name to drink title
 
         for(i=0;i<ingredients.length;i++){
             if(ingredients[i]!==null){
                 var newDrinkEl = document.createElement("h4")
                 newDrinkEl.textContent=ingredients[i] + ":    " + quantities[i]
-                ingredientDisplayEl.append(newDrinkEl)
+                $('#drinkIngredients').append(newDrinkEl)
             }
         }
 
@@ -271,7 +276,8 @@ var randomIndex
         console.log(maxValue)
         var caloriesEl = document.createElement("h2")
         caloriesEl.textContent=maxValue + " CALORIES"
-        ingredientDisplayEl.append(caloriesEl)
+        // ingredientDisplayEl.append(caloriesEl)
+        $('#drinkCalories').append(caloriesEl)
         console.log(caloriesArray)
         getPhrase()
 
@@ -369,28 +375,24 @@ function getPhrase(){
     maxValue = maxValue/phraseCals
 
     if(maxValue<60){
-        maxValue = maxValue.toFixed(0)
-        var phraseEl = document.createElement("h2")
-        phraseEl.textContent=phrasesArray[randomIndex].phrase + maxValue + phrasesArray[randomIndex].phrase2
-        ingredientDisplayEl.append(phraseEl)
-        addGif()
+        maxValue = maxValue.toFixed(0);
+        var matchingPhrase = phrasesArray[randomIndex].phrase2;
+        
     }else if(maxValue<90){
         maxValue = maxValue/60
         maxValue = maxValue.toFixed(0)
-        var phraseEl = document.createElement("h2")
-        phraseEl.textContent=phrasesArray[randomIndex].phrase + maxValue + phrasesArray[randomIndex].phrase3
-        ingredientDisplayEl.append(phraseEl)
-        addGif()
+        var matchingPhrase = phrasesArray[randomIndex].phrase3;
+        
     }else{
         maxValue = maxValue/60
         maxValue = maxValue.toFixed(0)
-        var phraseEl = document.createElement("h2")
-        phraseEl.textContent=phrasesArray[randomIndex].phrase + maxValue + phrasesArray[randomIndex].phrase4
-        ingredientDisplayEl.append(phraseEl)
-        addGif()
+        var matchingPhrase = phrasesArray[randomIndex].phrase4;
     }
+    addGif()
+    var phraseEl = document.createElement("p");
+    phraseEl.textContent=phrasesArray[randomIndex].phrase + maxValue + matchingPhrase;
+    $('#drinkBurn').append(phraseEl);
     
-
     
 }
 
