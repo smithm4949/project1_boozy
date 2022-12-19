@@ -351,7 +351,7 @@ function getPhrase(){
         phrase3: " hour will burn this off.",
         phrase4: " hours will burn this off.",
         caloriesburnedper1M: 22,
-        giphy: "run from bear",
+        giphy: "sprint away",
     }
     phrase10 = {
         phrase: "Look in the mirror and cry for ",
@@ -359,7 +359,7 @@ function getPhrase(){
         phrase3: " hour and you'll at least have this burned off.",
         phrase4: " hours and you'll at least have this burned off.",
         caloriesBurnedPer1M: 1.3,
-        giphy: "cry in mirror",
+        giphy: "cry",
     }
 
     phrasesArray = [phrase1, phrase2, phrase3, phrase4, phrase5, phrase6, phrase7, phrase8, phrase9, phrase10]
