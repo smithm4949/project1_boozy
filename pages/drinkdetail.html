@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
             <!-- CSS only -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-        <link rel="stylesheet" href="./assets/styles.css" />
+        <link rel="stylesheet" href="../assets/styles.css" />
         <title>ConCocktail - Drink Search</title>
     </head>
 
@@ -26,10 +26,34 @@
   <main>
 
     <div id="right-panel">
-            <h2 id="ingredientDisplay"></h2>
-        <div id="bottom-panel">
-            <h2 id="textBeforeBottomContainer"></h2>
+      <h2 id="ingredientDisplay"></h2>
+    </div>
+
+    <div class="card">
+
+
+
+      <div class="card-content">
+
+
+          <div class="media-content">
+            <h2 id="drinkTitle" class="title is-2"></h2>
+            <p id="drinkBurn" class="title is-5"></p>
+            <p id="drinkCalories" class="title is-5"></p>
+          </div>
         </div>
+    
+        <div id="drinkIngredients" class="content is-">
+
+          <div class="card-image">
+            <figure class="image is-2by2">
+              <img id="drinkPic" src="https://bulma.io/images/placeholders/1280x960.png" alt="Picture of chosen drink">
+            </figure>
+          </div>
+
+        </div>
+
+      </div>
     </div>
 
 

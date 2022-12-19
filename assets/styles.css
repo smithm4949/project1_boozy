@@ -42,3 +42,20 @@
 #clearList {
     margin: 20px 0px;
 }
+
+.card {
+    max-width: 80%;
+    margin: 0px 10%;
+}
+
+.card-image {
+    margin: 5%;
+}
+
+h4 {
+    padding-left: 1rem;
+}
+
+#drinkIngredients {
+    padding-bottom: 5%;
+}
