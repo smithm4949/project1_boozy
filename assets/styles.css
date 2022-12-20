@@ -49,6 +49,8 @@
 
 #drinkpic {
     object-fit: contain;
+    max-height: 1vh;
+    max-width: 1vh;
 }
 
 #gif {
