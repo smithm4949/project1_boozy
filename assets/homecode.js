@@ -115,7 +115,7 @@ onload = () => {
     if (location.search != '') {
         getStarted();
         clearList();
-        // $('#userInputIng').val(params.get("ingredients"));
+        $('#userInputIng').val(params.get("ingredients"));
         displayIngredient();
     }
 };
