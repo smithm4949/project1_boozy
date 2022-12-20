@@ -86,3 +86,6 @@ Bulma
 
 Get list of cocktails from ingredients: MaSandra
 Get calories given ingredients from recipe:
+
+## Tutorials
+*[GeeksforGeeks.org](https://www.geeksforgeeks.org/javascript-trigger-a-button-on-enter-key/)

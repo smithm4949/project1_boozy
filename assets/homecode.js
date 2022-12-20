@@ -17,6 +17,13 @@ $('#clearList').click(function (e) {
     $("#ingredientList").empty();
 });
 
+$('#userInputIng').keyup(function (e) { 
+    e.preventDefault();
+    if(e.keyCode === 13){
+        $('#addButton').click()
+    };
+});
+
 
 function displayIngredient() {
         var userInputIngEl = $('#userInputIng').val();
