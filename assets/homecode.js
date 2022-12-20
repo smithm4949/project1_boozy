@@ -79,20 +79,35 @@ function fetchIngredients() {
                             window.location.assign(urlPath)
                         });
 
-                        //saveFirstList(); <---In limbo
-                    
-                    // TODO - 
+                        saveDrinkList(); //use for first ingredient search
+                        // IF you want to store the search results for drink results
+                        async function saveDrinkList (){
+                            var newItem = drinkNameApi;
+                            var oldItems = JSON.parse(localStorage.getItem("Drink-List")) || [];
 
-                    /*
-                        !TO DO - Another fetch to get cocktail details by id (when a user clicks
-                        on one of the images and names of the drinks, the app will show the user
-                        the details from the api
-                    */
+                            oldItems.push(newItem);
+                            var newSet = [...new Set(oldItems)];
+                            localStorage.setItem("Drink-List", JSON.stringify(newSet)); 
+                        }
+
+                                    getDuplicateDrinks();
+                                    async function getDuplicateDrinks() {
+                                        await $('#addButton').click(displayIngredient);                                        ;
+                                        var newItem = drinkNameApi;
+                                        var previousNewSet = JSON.parse(localStorage.getItem("Drink-List"));
+                                            console.log("Function works")
+                                        
+                                    }
+                                
+
+
                     };
                 });
             };
         });
 };
+
+
 
 function getIngredientsForParam() {
     let paramString = "ingredients="
@@ -129,20 +144,3 @@ onload = () => {
         displayIngredient();
     }
 };
-
-/* LIMBO
-
-IF you want to store the search results for first ingredient
-function saveFirstList (){
-    var oldItems = JSON.parse(localStorage.getItem("First-List")) || [];
-    var newItem = drinkNameApi;
-    // Use the running list object and add on new items to the old items
-    oldItems.push(newItem);
-
-    // Remove duplicates 
-    var uniqueItems = [...new Set(oldItems)];
-    // Store the unique items - no duplicates
-    localStorage.setItem("First-List", JSON.stringify(uniqueItems));  
-};
-
-*/
