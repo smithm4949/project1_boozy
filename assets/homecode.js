@@ -70,6 +70,7 @@ function fetchIngredients() {
                     console.log(index);
                     console.log(value);
                     if(value.length===0){
+                        $("#ingredientList").empty();
                         return
                     }else if(mainDrinks.length===0){
                         for (i = 0; i < value.length; i++) {
@@ -167,6 +168,11 @@ onload = () => {
         displayIngredient();
     }
 };
+
+// function clearURL() {
+//     var newUrl = "./index.html"
+//     window.history.pushState({}, '', newUrl);
+//   };
 
 /* LIMBO
 

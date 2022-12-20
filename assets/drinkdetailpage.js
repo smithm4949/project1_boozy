@@ -6,18 +6,88 @@ var ingredientDisplayEl = document.getElementById("ingredientDisplay");
 var backButton = document.getElementById("back_button");
 var maxValue
 var drinkSearch = drink
-var phrasesArray = []
-var phrase1
-var phrase2
-var phrase3
-var phrase4
-var phrase5
-var phrase6
-var phrase7
-var phrase8
-var phrase9
-var phrase10
-var randomIndex
+var phrase1 = {
+    phrase: "You can burn this off by singing in the shower for ",
+    phrase2: " minutes!",
+    phrase3: " hour!",
+    phrase4: " hours!",
+    caloriesBurnedPer1M: 5,
+    giphy: "singing in the shower",
+}
+var phrase2 = {
+    phrase: "Listen to some dad jokes and laugh for ",
+    phrase2: " minutes and these calories are gone!",
+    phrase3: " hour and these calories are gone!",
+    phrase4: " hours and these calories are gone!",
+    caloriesBurnedPer1M: 3,
+    giphy: "laughing",
+}
+var phrase3 = {
+    phrase: "Active SEX(!) will clear this out of your system in ",
+    phrase2: " minutes!",
+    phrase3: " hour!",
+    phrase4: " hours!",
+    caloriesBurnedPer1M: 6.67,
+    giphy: "sex",
+}
+var phrase4 = {
+    phrase: "Brush your teeth for ",
+    phrase2: " minutes and this is out of your system!",
+    phrase3: " hour and this is out of your system!",
+    phrase4: " hours and this is out of your system!",
+    caloriesBurnedPer1M: 3.33,
+    giphy: "teeth",
+}
+var phrase5 = {
+    phrase: "If you whip your head back and forth to Willow Smith's song, you will burn this off in ",
+    phrase2: " minutes...if you go crazy enough.",
+    phrase3: " hour...if you go crazy enough.",
+    phrase4: " hours...if you go crazy enough.",
+    caloriesBurnedPer1M: 12.5,
+    giphy: "head whip",
+}
+var phrase6 = {
+    phrase: "Kissing for ",
+    phrase2: " minutes will burn this off, if it's intimate enough!",
+    phrase3: " hour will burn this off, if it's intimate enough!",
+    phrase4: " hours will burn this off, if it's intimate enough!",
+    caloriesBurnedPer1M: 3,
+    giphy: "kissing",
+}
+var phrase7 = {
+    phrase: "Walk your dog for ",
+    phrase2: " minutes and you'll have this burned off, and your dog will love you even more!",
+    phrase3: " hour and you'll have this burned off, and your dog will love you even more!",
+    phrase4: " hours and you'll have this burned off, and your dog will love you even more!",
+    caloriesBurnedPer1M: 3.33,
+    giphy: "walk dog",
+}
+var phrase8 = {
+    phrase: "Ride a horse for ",
+    phrase2: " minutes and these calories are gone. Giddyup!",
+    phrase3: " hour and these calories are gone. Giddyup!",
+    phrase4: " hours and these calories are gone. Giddyup!",
+    caloriesBurnedPer1M: 11.11,
+    giphy: "ride horse",
+}
+var phrase9 = {
+    phrase: "Running away from a predator for ",
+    phrase2: " minutes will burn this off.",
+    phrase3: " hour will burn this off.",
+    phrase4: " hours will burn this off.",
+    caloriesBurnedper1M: 22,
+    giphy: "sprint away",
+}
+var phrase10 = {
+    phrase: "Look in the mirror and cry for ",
+    phrase2: " minutes and you'll at least have this burned off.",
+    phrase3: " hour and you'll at least have this burned off.",
+    phrase4: " hours and you'll at least have this burned off.",
+    caloriesBurnedPer1M: 1.3,
+    giphy: "cry",
+}
+var phrasesArray = [phrase1, phrase2, phrase3, phrase4, phrase5, phrase6, phrase7, phrase8, phrase9, phrase10]
+var randomIndex = Math.floor(Math.random() * phrasesArray.length);
 
 $( document ).ready(function() {
 
@@ -31,9 +101,11 @@ $( document ).ready(function() {
         .then(function (data){
         //console log drink data
          console.log(data)
+         $('#drinkTitle').text(drinkSearch) // Text for the drink name to drink title
          var picUrl = data.drinks[0].strDrinkThumb
          $('#drinkPic').attr('src', picUrl);
-         
+         getFunFact()
+         addGif()
         // Extract values from data.drinks[0] object and store in array
         const values = Object.entries(data.drinks[0]);
         // Create new array of ingredient names and measurements
@@ -223,7 +295,6 @@ $( document ).ready(function() {
     for (const ingredient of ingredients) {
     if (ingredient) {
         const query = ingredient;
-
         requests.push($.ajax({
         method: 'GET',
         url: 'https://api.calorieninjas.com/v1/nutrition?query=' + query,
@@ -258,11 +329,7 @@ $( document ).ready(function() {
             }
         }
 
-        // var newDrinkEl2 = document.createElement("h2")
-        //         newDrinkEl2.textContent=drinkSearch
-                // Replaced code for new card Bulma
-                // ingredientDisplayEl.append(newDrinkEl2)
-            $('#drinkTitle').text(drinkSearch) // Text for the drink name to drink title
+            
 
         for(i=0;i<ingredients.length;i++){
             if(ingredients[i]!==null){
@@ -290,89 +357,8 @@ $( document ).ready(function() {
     })
 
 function getPhrase(){
-    phrase1 = {
-        phrase: "You can burn this off by singing in the shower for ",
-        phrase2: " minutes!",
-        phrase3: " hour!",
-        phrase4: " hours!",
-        caloriesBurnedPer1M: 5,
-        giphy: "singing in the shower",
-    }
-    phrase2 = {
-        phrase: "Listen to some dad jokes and laugh for ",
-        phrase2: " minutes and these calories are gone!",
-        phrase3: " hour and these calories are gone!",
-        phrase4: " hours and these calories are gone!",
-        caloriesBurnedPer1M: 3,
-        giphy: "laughing",
-    }
-    phrase3 = {
-        phrase: "Active SEX(!) will clear this out of your system in ",
-        phrase2: " minutes!",
-        phrase3: " hour!",
-        phrase4: " hours!",
-        caloriesBurnedPer1M: 6.67,
-        giphy: "sex",
-    }
-    phrase4 = {
-        phrase: "Brush your teeth for ",
-        phrase2: " minutes and this is out of your system!",
-        phrase3: " hour and this is out of your system!",
-        phrase4: " hours and this is out of your system!",
-        caloriesBurnedPer1M: 3.33,
-        giphy: "teeth",
-    }
-    phrase5 = {
-        phrase: "If you whip your head back and forth to Willow Smith's song, you will burn this off in ",
-        phrase2: " minutes...if you go crazy enough.",
-        phrase3: " hour...if you go crazy enough.",
-        phrase4: " hours...if you go crazy enough.",
-        caloriesBurnedPer1M: 12.5,
-        giphy: "head whip",
-    }
-    phrase6 = {
-        phrase: "Kissing for ",
-        phrase2: " minutes will burn this off, if it's intimate enough!",
-        phrase3: " hour will burn this off, if it's intimate enough!",
-        phrase4: " hours will burn this off, if it's intimate enough!",
-        caloriesBurnedPer1M: 3,
-        giphy: "kissing",
-    }
-    phrase7 = {
-        phrase: "Walk your dog for ",
-        phrase2: " minutes and you'll have this burned off, and your dog will love you even more!",
-        phrase3: " hour and you'll have this burned off, and your dog will love you even more!",
-        phrase4: " hours and you'll have this burned off, and your dog will love you even more!",
-        caloriesBurnedPer1M: 3.33,
-        giphy: "walk dog",
-    }
-    phrase8 = {
-        phrase: "Ride a horse for ",
-        phrase2: " minutes and these calories are gone. Giddyup!",
-        phrase3: " hour and these calories are gone. Giddyup!",
-        phrase4: " hours and these calories are gone. Giddyup!",
-        caloriesBurnedPer1M: 11.11,
-        giphy: "ride horse",
-    }
-    phrase9 = {
-        phrase: "Running away from a predator for ",
-        phrase2: " minutes will burn this off.",
-        phrase3: " hour will burn this off.",
-        phrase4: " hours will burn this off.",
-        caloriesBurnedper1M: 22,
-        giphy: "sprint away",
-    }
-    phrase10 = {
-        phrase: "Look in the mirror and cry for ",
-        phrase2: " minutes and you'll at least have this burned off.",
-        phrase3: " hour and you'll at least have this burned off.",
-        phrase4: " hours and you'll at least have this burned off.",
-        caloriesBurnedPer1M: 1.3,
-        giphy: "cry",
-    }
+    
 
-    phrasesArray = [phrase1, phrase2, phrase3, phrase4, phrase5, phrase6, phrase7, phrase8, phrase9, phrase10]
-    randomIndex = Math.floor(Math.random() * phrasesArray.length);
     var phraseCals = phrasesArray[randomIndex].caloriesBurnedPer1M
     console.log(maxValue)
     maxValue = maxValue/phraseCals
@@ -391,8 +377,6 @@ function getPhrase(){
         maxValue = maxValue.toFixed(0)
         var matchingPhrase = phrasesArray[randomIndex].phrase4;
     }
-    addGif()
-    getFunFact()
     var phraseEl = document.createElement("p");
     phraseEl.textContent=phrasesArray[randomIndex].phrase + maxValue + matchingPhrase;
     $('#drinkBurn').append(phraseEl);
