@@ -104,6 +104,7 @@ $( document ).ready(function() {
          $('#drinkTitle').text(drinkSearch) // Text for the drink name to drink title
          var picUrl = data.drinks[0].strDrinkThumb
          $('#drinkPic').attr('src', picUrl);
+         $('#drinkPic').attr('height', '200px')
          getFunFact()
          addGif()
         // Extract values from data.drinks[0] object and store in array
