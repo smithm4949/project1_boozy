@@ -5,9 +5,15 @@ $('#clearList').click(clearList);
 const params = new URLSearchParams(location.search);
 //access with params.get("param")
 
+mainDrinks = []
+storedDrinks3more = []
+
 function clearList() {
     localStorage.clear();
     $("#ingredientList").empty();
+    $("#drinkList").empty();
+    mainDrinks.length = 0
+    storedDrinks3more.length = 0
 }
 
 function getStarted() {
@@ -60,25 +66,57 @@ function fetchIngredients() {
             
             function displayImg () {
                 $.each(firstIngredientFilter, function (index, value){
+                    console.log(mainDrinks)
                     console.log(index);
                     console.log(value);
-                    for (i = 0; i < value.length; i++) {
-                    //! TODO Add an image attribute later
-                        var drinkNameApi = value[i].strDrink;
-                        console.log(drinkNameApi);
-                        var newDrinkThumb = $('<button class="drinkName column"></button>').text(drinkNameApi);
-                        //newDrinkThumb.attr(attributeName, value);
-                        newDrinkThumb.appendTo($("#drinkList"));
-
-
-                        newDrinkThumb.click(function (e) { 
-                            console.log(e.target.innerHTML)
-                            e.preventDefault();
-                            var urlPath = "./pages/drinkdetail.html?drink="+e.target.innerHTML+"&"
-                            urlPath += getIngredientsForParam();
-                            window.location.assign(urlPath)
-                        });
-
+                    if(value.length===0){
+                        return
+                    }else if(mainDrinks.length===0){
+                        for (i = 0; i < value.length; i++) {
+                        //! TODO Add an image attribute later
+                            var drinkNameApi = value[i].strDrink;
+                            console.log(drinkNameApi);
+                            mainDrinks.push(drinkNameApi)
+                            var newDrinkThumb = $('<button class="drinkName column"></button>').text(drinkNameApi);
+                            //newDrinkThumb.attr(attributeName, value);
+                            newDrinkThumb.appendTo($("#drinkList"));
+                            newDrinkThumb.click(function (e) { 
+                                console.log(e.target.innerHTML)
+                                e.preventDefault();
+                                var urlPath = "./pages/drinkdetail.html?drink="+e.target.innerHTML+"&"
+                                urlPath += getIngredientsForParam();
+                                window.location.assign(urlPath)
+                            });
+                        }
+                    }
+                    else{
+                            $("#drinkList").empty();
+                            storedDrinks3more.length =0
+                            storedDrinks3more = storedDrinks3more.concat(mainDrinks)
+                            mainDrinks.length = 0
+                            console.log(mainDrinks)
+                            console.log(storedDrinks3more)
+                        for (i=0; i < value.length; i++) {
+                            var drinkNameApi = value[i].strDrink;
+                            if(storedDrinks3more.includes(drinkNameApi)){
+                                mainDrinks.push(drinkNameApi)
+                            }
+                        }
+                        for (i=0; i < mainDrinks.length; i++){
+                            var newDrinkThumb = $('<button class="drinkName column"></button>').text(mainDrinks[i]);
+                            //newDrinkThumb.attr(attributeName, value);
+                            newDrinkThumb.appendTo($("#drinkList"));
+                            newDrinkThumb.click(function (e) { 
+                                console.log(e.target.innerHTML)
+                                e.preventDefault();
+                                var urlPath = "./pages/drinkdetail.html?drink="+e.target.innerHTML+"&"
+                                urlPath += getIngredientsForParam();
+                                window.location.assign(urlPath)
+                            });
+                            console.log(mainDrinks)
+                        }
+                    }
+                })
                         //saveFirstList(); <---In limbo
                     
                     // TODO - 
@@ -88,8 +126,8 @@ function fetchIngredients() {
                         on one of the images and names of the drinks, the app will show the user
                         the details from the api
                     */
-                    };
-                });
+                  
+                
             };
         });
 };
