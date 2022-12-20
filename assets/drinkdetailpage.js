@@ -75,7 +75,7 @@ var phrase9 = {
     phrase2: " minutes will burn this off.",
     phrase3: " hour will burn this off.",
     phrase4: " hours will burn this off.",
-    caloriesBurnedper1M: 22,
+    caloriesBurnedPer1M: 22,
     giphy: "sprint away",
 }
 var phrase10 = {
