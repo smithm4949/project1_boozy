@@ -17,26 +17,17 @@ function getStarted() {
     localStorage.clear();
 };
 
-$('#addButton').click(function (e) {
-    e.preventDefault();
-    displayIngredient();
-});
-
-$('#clearList').click(function (e) {
-    e.preventDefault();
-    localStorage.clear();
-    $("#ingredientList").empty();
-});
-
-$('#userInputIng').keyup(function (e) { 
-    e.preventDefault();
+$('#userInputIng').keydown(function (e) { 
     if(e.keyCode === 13){
-        $('#addButton').click()
+        displayIngredient()
     };
 });
 
 
 function displayIngredient() {
+    if ($('#userInputIng').val() === "") {
+        return;
+    }
     var userInputIngEl = $('#userInputIng').val();
     var ingredientListEl = $("#ingredientList");
     var newIngBtn = $('<li class="item button is-success"><span class="icon is-small"><i class="fas fa-check"></i></span></li>');
@@ -71,7 +62,7 @@ function fetchIngredients() {
                 $.each(firstIngredientFilter, function (index, value){
                     console.log(index);
                     console.log(value);
-                    for (i =0; i < value.length; i++) {
+                    for (i = 0; i < value.length; i++) {
                     //! TODO Add an image attribute later
                         var drinkNameApi = value[i].strDrink;
                         console.log(drinkNameApi);
