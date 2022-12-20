@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
             <!-- CSS only -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-        <link rel="stylesheet" href="./assets/styles.css" />
+        <link rel="stylesheet" href="../assets/styles.css" />
         <title>ConCocktail - Drink Search</title>
     </head>
 
@@ -20,18 +20,57 @@
             <img src="../assets/images/Logo.png">
           </figure>
         </div>
-    <!--END OF NAV BAR-->
   </header>
 
   <main>
+    <div class="tile is-ancestor">
+      <div class="tile is-vertical is-8">
 
-    <div id="right-panel">
-            <h2 id="ingredientDisplay"></h2>
-        <div id="bottom-panel">
-            <h2 id="textBeforeBottomContainer"></h2>
+        <div class="tile">
+          <div class="tile is-parent is-vertical">
+            <article class="tile is-child notification is-primary">
+              <h2 id="drinkTitle" class="title is-2"></h2>
+                <img id="drinkPic" alt="Picture of chosen drink">
+            </article>
+            <article class="tile is-child notification is-warning">
+              <p id="drinkCalories" class="title"></p>
+            </article>
+          </div>
+
+          <div class="tile is-parent">
+              <article class="tile is-child notification is-info">
+                <p class="title">How do I burn it?!</p>
+                <p id="drinkBurn" class="title is-5 title"></p>
+                  <figure><img id="gif" src="" alt="GIF of the activity"></figure>
+              </article>
+          </div>
+
         </div>
-    </div>
 
+        <div class="tile is-parent">
+          <article class="tile is-child notification is-danger">
+            <div class="content">
+              <p class="title">Funny tile</p>
+              <p class="subtitle">With even more FUNNY content</p>
+              <div class="content">
+                <!-- Content -->
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="tile is-parent">
+
+        <article class="tile is-child notification is-success">
+          <p class="title">Ingredients</p>
+          <p class="subtitle">Impress your Bartender</p>
+          <div id="drinkIngredients"></div>
+        </article>
+      </div>
+
+    </div>
+  </main>
 
       <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
       <script
@@ -40,5 +79,6 @@
       crossorigin="anonymous"
       ></script>        
       <script src="../assets/drinkdetailpage.js"></script>
-    </body>   
+
+</body>   
 </html>

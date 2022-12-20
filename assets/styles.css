@@ -42,3 +42,7 @@
 #clearList {
     margin: 20px 0px;
 }
+
+#gif {
+    min-height: 3vh;
+}
