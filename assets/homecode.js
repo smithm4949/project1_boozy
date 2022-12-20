@@ -15,7 +15,26 @@ function getStarted() {
     $('#ingredientSection').attr("style", "display:block");
     $('#introCard').attr("style", "display:none");
     localStorage.clear();
-}
+};
+
+$('#addButton').click(function (e) {
+    e.preventDefault();
+    displayIngredient();
+});
+
+$('#clearList').click(function (e) {
+    e.preventDefault();
+    localStorage.clear();
+    $("#ingredientList").empty();
+});
+
+$('#userInputIng').keyup(function (e) { 
+    e.preventDefault();
+    if(e.keyCode === 13){
+        $('#addButton').click()
+    };
+});
+
 
 function displayIngredient() {
     var userInputIngEl = $('#userInputIng').val();
