@@ -358,7 +358,7 @@ function getPhrase(){
         phrase2: " minutes will burn this off.",
         phrase3: " hour will burn this off.",
         phrase4: " hours will burn this off.",
-        caloriesburnedper1M: 22,
+        caloriesBurnedper1M: 22,
         giphy: "sprint away",
     }
     phrase10 = {
