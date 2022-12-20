@@ -1,9 +1,9 @@
 // ISSUE: Test on Adam & Eve - Title only shows "Adam"
 
-const url = new URL(window.location.href);
-const params = new URLSearchParams(url.search);
+const params = new URLSearchParams(location.search);
 const drink = params.get('drink');
-var ingredientDisplayEl = document.getElementById("ingredientDisplay")
+var ingredientDisplayEl = document.getElementById("ingredientDisplay");
+var backButton = document.getElementById("back_button");
 var maxValue
 var drinkSearch = drink
 var phrasesArray = []
@@ -21,6 +21,7 @@ var randomIndex
 
 $( document ).ready(function() {
 
+    backButton.addEventListener("click", backToSearch);
     //get ingredients and quantities
     fetch("https://www.thecocktaildb.com/api/json/v1/1/search.php?s="+drinkSearch)
     .then(function (response){
@@ -398,6 +399,9 @@ function getPhrase(){
     
 }
 
+function backToSearch() {
+    location.assign(`../index.html?ingredients=${params.get("ingredients")}`);
+}
 
 function addGif(){
     fetch("https://api.giphy.com/v1/gifs/search?api_key=A6HK07mogH7JM9izoGmrzng2EUhXVWtG&q="+phrasesArray[randomIndex].giphy+"&limit=25&offset=0&rating=g&lang=en")
