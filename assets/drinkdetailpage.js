@@ -392,6 +392,7 @@ function getPhrase(){
         var matchingPhrase = phrasesArray[randomIndex].phrase4;
     }
     addGif()
+    getFunFact()
     var phraseEl = document.createElement("p");
     phraseEl.textContent=phrasesArray[randomIndex].phrase + maxValue + matchingPhrase;
     $('#drinkBurn').append(phraseEl);
@@ -418,4 +419,17 @@ function addGif(){
         $('#gif').attr("src", data.data[randomGif].images.downsized.url);
         //ingredientDisplayEl.append(gifEl)
 })}
+
+function getFunFact(){
+    var funFactEl = document.getElementById("funfact")
+    fetch("https://uselessfacts.jsph.pl/random.json?language=en")
+    .then(function (response){
+        return response.json();
+        })
+        .then(function (data){
+        funFactEl.textContent=data.text
+})
+}
+
+
 });
