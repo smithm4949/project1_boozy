@@ -13,16 +13,12 @@
 <body>
 
   <header>
-    <!--NAVIGATION BAR-->
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-          <figure class="logo image is-128x128">
-            <img src="../assets/images/Logo.png">
-          </figure>
-        </div>
+      <figure class="small-logo image is-64x64">
+        <img src="../assets/images/Logo.png">
+      </figure>
   </header>
 
-  <main>
+  <main  id="detailMain">
     <div class="tile is-ancestor">
       <div class="tile is-vertical is-8">
 
@@ -36,22 +32,20 @@
               <p id="drinkCalories" class="title"></p>
             </article>
           </div>
-
           <div class="tile is-parent">
-              <article class="tile is-child notification is-info">
-                <p class="title">How do I burn it?!</p>
-                <p id="drinkBurn" class="title is-5 title"></p>
-                  <figure><img id="gif" src="" alt="GIF of the activity"></figure>
-              </article>
+            <article class="tile is-child notification is-success">
+              <p class="title">Ingredients</p>
+              <p class="subtitle">Impress your Bartender</p>
+              <div id="drinkIngredients"></div>
+            </article>
           </div>
-
         </div>
 
         <div class="tile is-parent">
           <article class="tile is-child notification is-danger">
             <div class="content">
-              <p class="title">Funny tile</p>
-              <p class="subtitle">With even more FUNNY content</p>
+              <p class="title">Fun Fact</p>
+              <p class="subtitle">Currently building out</p>
               <div class="content">
                 <!-- Content -->
               </div>
@@ -61,14 +55,12 @@
       </div>
 
       <div class="tile is-parent">
-
-        <article class="tile is-child notification is-success">
-          <p class="title">Ingredients</p>
-          <p class="subtitle">Impress your Bartender</p>
-          <div id="drinkIngredients"></div>
+        <article class="tile is-child notification is-info">
+          <p class="title">How do I burn it?!</p>
+          <p id="drinkBurn" class="title is-5 title"></p>
+            <figure><img id="gif" src="" alt="GIF of the activity"></figure>
         </article>
       </div>
-
     </div>
   </main>
 
