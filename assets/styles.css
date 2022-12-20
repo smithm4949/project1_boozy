@@ -43,6 +43,14 @@
     margin: 20px 0px;
 }
 
+.small-logo{
+    margin: 10px;
+}
+
+#drinkpic {
+    object-fit: contain;
+}
+
 #gif {
-    min-height: 3vh;
+    object-fit: contain;
 }
