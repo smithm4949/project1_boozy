@@ -24,7 +24,7 @@ $('#userInputIng').keydown(function (e) {
 });
 
 
-function displayIngredient() {
+async function displayIngredient() {
     if ($('#userInputIng').val() === "") {
         return;
     }
@@ -63,13 +63,9 @@ function fetchIngredients() {
                     console.log(index);
                     console.log(value);
                     for (i = 0; i < value.length; i++) {
-                    //! TODO Add an image attribute later
                         var drinkNameApi = value[i].strDrink;
-                        console.log(drinkNameApi);
                         var newDrinkThumb = $('<button class="drinkName column"></button>').text(drinkNameApi);
-                        //newDrinkThumb.attr(attributeName, value);
                         newDrinkThumb.appendTo($("#drinkList"));
-
 
                         newDrinkThumb.click(function (e) { 
                             console.log(e.target.innerHTML)
@@ -79,34 +75,20 @@ function fetchIngredients() {
                             window.location.assign(urlPath)
                         });
 
-                        saveDrinkList(); //use for first ingredient search
-                        // IF you want to store the search results for drink results
-                        async function saveDrinkList (){
+                        saveDrinkList(); 
+                        function saveDrinkList (){
                             var newItem = drinkNameApi;
                             var oldItems = JSON.parse(localStorage.getItem("Drink-List")) || [];
-
                             oldItems.push(newItem);
-                            var newSet = [...new Set(oldItems)];
-                            localStorage.setItem("Drink-List", JSON.stringify(newSet)); 
+                            localStorage.setItem("Drink-List", JSON.stringify(oldItems)); 
+                            var duplicateDrinks = oldItems.filter((a, i, aa) => aa.indexOf(a) === i && aa.lastIndexOf(a) !== i); //See credits in README for this line of code
+                            console.log(duplicateDrinks) // shows only drinks that duplicated with search filters
                         }
-
-                                    getDuplicateDrinks();
-                                    async function getDuplicateDrinks() {
-                                        await $('#addButton').click(displayIngredient);                                        ;
-                                        var newItem = drinkNameApi;
-                                        var previousNewSet = JSON.parse(localStorage.getItem("Drink-List"));
-                                            console.log("Function works")
-                                        
-                                    }
-                                
-
-
                     };
                 });
             };
         });
 };
-
 
 
 function getIngredientsForParam() {

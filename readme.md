@@ -93,3 +93,4 @@ Get calories given ingredients from recipe:
 
 ## Tutorials
 *[GeeksforGeeks.org](https://www.geeksforgeeks.org/javascript-trigger-a-button-on-enter-key/)
+*[stackOverflow](https://stackoverflow.com/questions/47132232/how-to-keep-duplicates-of-an-array): Line of code for creating a new array with only duplicates
