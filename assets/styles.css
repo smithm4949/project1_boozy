@@ -47,10 +47,8 @@
     margin: 10px;
 }
 
-#drinkpic {
-    object-fit: contain;
-    max-height: 1vh;
-    max-width: 1vh;
+#drinkPic {
+    max-height: 200px !important;
 }
 
 #gif {
