@@ -102,9 +102,6 @@ function fetchIngredients() {
                                 $("#drinkList").empty();
                                 var duplicateLsList = JSON.parse(localStorage.getItem("Duplicate-List"));
                                 console.log(duplicateLsList)
-                                //for (i = 0; i < duplicateLsList.length; i++) {
-                                //var newDrinkThumb = $('<button class="drinkName column"></button>').text(duplicateLsList);
-                                //newDrinkThumb.appendTo($("#drinkList"));
                                 duplicateLsList.forEach(element => {
                                     console.log(element);
                                     var newDrinkThumb = $('<button class="drinkName column"></button>').text(element);
