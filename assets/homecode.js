@@ -8,6 +8,7 @@ const params = new URLSearchParams(location.search);
 function clearList() {
     localStorage.clear();
     $("#ingredientList").empty();
+    $("#drinkList").empty();
 }
 
 function getStarted() {
@@ -15,6 +16,7 @@ function getStarted() {
     $('#ingredientSection').attr("style", "display:block");
     $('#introCard').attr("style", "display:none");
     localStorage.clear();
+    fetchJoke();
 };
 
 $('#userInputIng').keydown(function (e) { 
@@ -41,6 +43,17 @@ async function displayIngredient() {
 // !TO DO - Look up method to remove the duplicate ingredient buttons
 // !Nice to have - ability to remove an ingredient by clicking on the button
 
+};
+
+function fetchJoke(){
+    fetch("https://v2.jokeapi.dev/joke/Programming?type=single")
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data.joke)
+            $('#joke').text(data.joke);
+        });
 };
 
 function fetchIngredients() {
@@ -81,8 +94,10 @@ function fetchIngredients() {
                             var oldItems = JSON.parse(localStorage.getItem("Drink-List")) || [];
                             oldItems.push(newItem);
                             localStorage.setItem("Drink-List", JSON.stringify(oldItems)); 
+                            
                             var duplicateDrinks = oldItems.filter((a, i, aa) => aa.indexOf(a) === i && aa.lastIndexOf(a) !== i); //See credits in README for this line of code
                             console.log(duplicateDrinks) // shows only drinks that duplicated with search filters
+                            localStorage.setItem("Duplicate-List", JSON.stringify(duplicateDrinks)); 
                         }
                     };
                 });
