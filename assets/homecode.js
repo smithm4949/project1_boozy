@@ -97,6 +97,23 @@ function fetchIngredients() {
                             var duplicateDrinks = oldItems.filter((a, i, aa) => aa.indexOf(a) === i && aa.lastIndexOf(a) !== i); //See credits in README for this line of code
                             console.log(duplicateDrinks) // shows only drinks that duplicated with search filters
                             localStorage.setItem("Duplicate-List", JSON.stringify(duplicateDrinks)); 
+
+                            if(duplicateDrinks.length >= 1){
+                                $("#drinkList").empty();
+                                var duplicateLsList = JSON.parse(localStorage.getItem("Duplicate-List"));
+                                console.log(duplicateLsList)
+                                //for (i = 0; i < duplicateLsList.length; i++) {
+                                //var newDrinkThumb = $('<button class="drinkName column"></button>').text(duplicateLsList);
+                                //newDrinkThumb.appendTo($("#drinkList"));
+                                duplicateLsList.forEach(element => {
+                                    console.log(element);
+                                    var newDrinkThumb = $('<button class="drinkName column"></button>').text(element);
+                                    newDrinkThumb.appendTo($("#drinkList"));
+                                });
+                                //}
+                            } else {
+                                return
+                            }
                         }
                     };
                 });
