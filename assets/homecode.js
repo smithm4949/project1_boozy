@@ -26,7 +26,7 @@ $('#userInputIng').keydown(function (e) {
 });
 
 
-async function displayIngredient() {
+function displayIngredient() {
     if ($('#userInputIng').val() === "") {
         return;
     }
@@ -40,7 +40,6 @@ async function displayIngredient() {
     fetchIngredients();
     saveIngredient();
 
-// !TO DO - Look up method to remove the duplicate ingredient buttons
 // !Nice to have - ability to remove an ingredient by clicking on the button
 
 };
