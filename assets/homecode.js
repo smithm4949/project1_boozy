@@ -12,8 +12,10 @@ function clearList() {
     localStorage.clear();
     $("#ingredientList").empty();
     $("#drinkList").empty();
-    mainDrinks.length = 0
-    storedDrinks3more.length = 0
+    mainDrinks.length = 0;
+    storedDrinks3more.length = 0;
+    params.delete("ingredients");
+    location.search = `?${params.toString()}`;
 }
 
 function getStarted() {
@@ -35,12 +37,7 @@ function displayIngredient() {
     if ($('#userInputIng').val() === "") {
         return;
     }
-    var userInputIngEl = $('#userInputIng').val();
-    var ingredientListEl = $("#ingredientList");
-    var newIngBtn = $('<li class="item button is-success"><span class="icon is-small"><i class="fas fa-check"></i></span></li>');
-    newIngBtn.appendTo(ingredientListEl);
-    newIngBtn.text(userInputIngEl);
-    newIngBtn.val(userInputIngEl);
+    makeIngredientButton();
 
     fetchIngredients();
     saveIngredient();
@@ -120,6 +117,15 @@ function loadDrinkDetailPageWithParams(e) {
     window.location.assign(urlPath);
 }
 
+function makeIngredientButton() {
+    var userInputIngEl = $('#userInputIng').val();
+    var ingredientListEl = $("#ingredientList");
+    var newIngBtn = $('<li class="item button is-success"><span class="icon is-small"><i class="fas fa-check"></i></span></li>');
+    newIngBtn.text(userInputIngEl);
+    newIngBtn.val(userInputIngEl);
+    newIngBtn.appendTo(ingredientListEl);
+}
+
 function makeAndAddButtonToGrid(btnText) {
     var newDrinkThumb = $('<button class="drinkName column"></button>').text(btnText);
     newDrinkThumb.appendTo($("#drinkList"));
@@ -157,6 +163,7 @@ function saveIngredient() {
 //if ingredients, seperate by comma, then run method to imitate searching them
 onload = () => {
     let searchParams = new URLSearchParams(location.search);
+    getStarted();
     if (searchParams.get("ingredients")) {
         let paramsArray = searchParams.get("ingredients").split(",");
         console.log(paramsArray)
@@ -164,7 +171,5 @@ onload = () => {
             $('#userInputIng').val(ingredient);
             displayIngredient(ingredient);
         })
-        getStarted();
-        clearList();
     }
 };
