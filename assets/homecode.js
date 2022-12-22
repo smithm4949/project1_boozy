@@ -5,10 +5,15 @@ $('#clearList').click(clearList);
 const params = new URLSearchParams(location.search);
 //access with params.get("param")
 
+mainDrinks = []
+storedDrinks3more = []
+
 function clearList() {
     localStorage.clear();
     $("#ingredientList").empty();
     $("#drinkList").empty();
+    mainDrinks.length = 0
+    storedDrinks3more.length = 0
 }
 
 function getStarted() {
@@ -67,53 +72,60 @@ function fetchIngredients() {
         .then(function (data) {
             var firstIngredientFilter = data;
             console.log(firstIngredientFilter);
-            // Put the displayImg function here
             displayImg();
             
             function displayImg () {
                 $.each(firstIngredientFilter, function (index, value){
+                    console.log(mainDrinks)
                     console.log(index);
                     console.log(value);
-                    for (i = 0; i < value.length; i++) {
-                        var drinkNameApi = value[i].strDrink;
-                        var newDrinkThumb = $('<button class="drinkName column"></button>').text(drinkNameApi);
-                        newDrinkThumb.appendTo($("#drinkList"));
-
-                        newDrinkThumb.click(function (e) { 
-                            console.log(e.target.innerHTML)
-                            e.preventDefault();
-                            var urlPath = "./pages/drinkdetail.html?drink="+e.target.innerHTML+"&"
-                            urlPath += getIngredientsForParam();
-                            window.location.assign(urlPath)
-                        });
-
-                        saveDrinkList(); 
-                        function saveDrinkList (){
-                            var newItem = drinkNameApi;
-                            var oldItems = JSON.parse(localStorage.getItem("Drink-List")) || [];
-                            oldItems.push(newItem);
-                            localStorage.setItem("Drink-List", JSON.stringify(oldItems)); 
-                            
-                            var duplicateDrinks = oldItems.filter((a, i, aa) => aa.indexOf(a) === i && aa.lastIndexOf(a) !== i); //See credits in README for this line of code
-                            console.log(duplicateDrinks) // shows only drinks that duplicated with search filters
-                            localStorage.setItem("Duplicate-List", JSON.stringify(duplicateDrinks)); 
-
-                            if(duplicateDrinks.length >= 1){
-                                $("#drinkList").empty();
-                                var duplicateLsList = JSON.parse(localStorage.getItem("Duplicate-List"));
-                                console.log(duplicateLsList)
-                                duplicateLsList.forEach(element => {
-                                    console.log(element);
-                                    var newDrinkThumb = $('<button class="drinkName column"></button>').text(element);
-                                    newDrinkThumb.appendTo($("#drinkList"));
-                                });
-                                //}
-                            } else {
-                                return
+                    if(value.length===0){
+                        $("#ingredientList").empty();
+                        return
+                    }else if(mainDrinks.length===0){
+                        for (i = 0; i < value.length; i++) {
+                            var drinkNameApi = value[i].strDrink;
+                            mainDrinks.push(drinkNameApi)
+                            var newDrinkThumb = $('<button class="drinkName column"></button>').text(drinkNameApi);
+                            newDrinkThumb.appendTo($("#drinkList"));
+                            newDrinkThumb.click(function (e) { 
+                                console.log(e.target.innerHTML)
+                                e.preventDefault();
+                                var urlPath = "./pages/drinkdetail.html?drink="+e.target.innerHTML+"&"
+                                urlPath += getIngredientsForParam();
+                                window.location.assign(urlPath)
+                            });
+                        }
+                    }
+                    else{
+                            $("#drinkList").empty();
+                            storedDrinks3more.length =0
+                            storedDrinks3more = storedDrinks3more.concat(mainDrinks)
+                            mainDrinks.length = 0
+                            console.log(mainDrinks)
+                            console.log(storedDrinks3more)
+                        for (i=0; i < value.length; i++) {
+                            var drinkNameApi = value[i].strDrink;
+                            if(storedDrinks3more.includes(drinkNameApi)){
+                                mainDrinks.push(drinkNameApi)
                             }
                         }
-                    };
-                });
+                        for (i=0; i < mainDrinks.length; i++){
+                            var newDrinkThumb = $('<button class="drinkName column"></button>').text(mainDrinks[i]);
+                            newDrinkThumb.appendTo($("#drinkList"));
+                            newDrinkThumb.click(function (e) { 
+                                console.log(e.target.innerHTML)
+                                e.preventDefault();
+                                var urlPath = "./pages/drinkdetail.html?drink="+e.target.innerHTML+"&"
+                                urlPath += getIngredientsForParam();
+                                window.location.assign(urlPath)
+                            });
+                            console.log(mainDrinks)
+                        }
+                    }
+                })
+
+                
             };
         });
 };

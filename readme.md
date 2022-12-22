@@ -28,6 +28,10 @@ This project is under development
 <img src=./assets/images/GIF.gif style="width:40rem">
 <br></br>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> c040d7599b716774b63454acc43b8aa86583d4b9
 ## Screenshots - TBD
 
 ## Todo
