@@ -52,7 +52,7 @@ Homepage <br>
 User Input Page <br>
 <img src=./assets/images/screenshot_userInputPage.png style="width:30rem">
 
-Drink Detial Page <br>
+Drink Detail Page <br>
 <img src=./assets/images/screenshot_drinkDetail.png style="width:30rem">
 <br>
 
