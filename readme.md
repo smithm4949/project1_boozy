@@ -39,7 +39,8 @@ The group leader is Myles Smith. All members contributed to the following:
 * JavaScript - Vanilla JS and JQuery
 * Presentation & Pitch
 
-
+### Acknowledgment
+Sebastain Favè
 
 ## ConCocktail GIFS - as of 12/22/2022
 <img src=./assets/images/GIF.gif style="width:40rem">
@@ -52,7 +53,7 @@ Homepage <br>
 User Input Page <br>
 <img src=./assets/images/screenshot_userInputPage.png style="width:30rem">
 
-Drink Detial Page <br>
+Drink Detail Page <br>
 <img src=./assets/images/screenshot_drinkDetail.png style="width:30rem">
 <br>
 
