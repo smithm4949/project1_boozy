@@ -60,6 +60,9 @@ $('#userInputIng').keydown(function (e) {
 
 
 function displayIngredient(ingredient) {
+    $('#clearAndIngList').attr("style", "display:block");
+    $('#pickDrink').attr("style", "display:block");
+
     if (ingredient === "") {
         return;
     }
@@ -92,7 +95,7 @@ function fetchJoke(){
 };
 
 function fetchIngredients(ingredient) {
-    //var userInputIngEl = $('#userInputIng').val();
+    
     console.log(ingredient);
     var appUrl = ("https://www.thecocktaildb.com/api/json/v1/1/filter.php?i="+ingredient)
     return fetch(appUrl)

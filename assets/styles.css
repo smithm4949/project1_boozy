@@ -20,6 +20,15 @@
     width: 25vw
 }
 
+#inputAndAdd,
+#clearAndIngList {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 2%;
+    /* justify-content: space-around; */
+}
+
 #ingredientList {
     display: flex;
     flex-direction: row;
