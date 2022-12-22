@@ -1,7 +1,6 @@
 $('#getStarted').click(getStarted);
-$('#addButton').click(displayIngredient);
+$('#addButton').click(handleAddButtonClick);
 $('#clearList').click(clearList);
-$('.exMark').click(deleteIng);
 
 const params = new URLSearchParams(location.search);
 //access with params.get("param")
@@ -13,11 +12,24 @@ function clearList() {
     localStorage.clear();
     $("#ingredientList").empty();
     $("#drinkList").empty();
-    mainDrinks.length = 0
-    storedDrinks3more.length = 0
+    mainDrinks.length = 0;
+    storedDrinks3more.length = 0;
+    params.delete("ingredients");
+    location.search = `?${params.toString()}`;
 }
 
-function deleteIng() { // when exMark class button is clicked, run this function to delete the ingredient from the url string
+// when exMark class button is clicked, run this function to delete the ingredient from the url string
+function deleteIng(e) {
+    if (!e.target.classList.contains("exMark")) return;
+    //get localstorage ing array, remove ingredient, save to localstorage, refresh page with new params
+    let ingredientsArray = JSON.parse(localStorage.getItem("Ingredients")) || [];
+    let ingredientIndex = ingredientsArray.indexOf(e.target.parentElement.textContent);
+    console.log(ingredientsArray)
+    ingredientsArray.splice(ingredientIndex, 1);
+    console.log(ingredientsArray)
+    localStorage.setItem("Ingredients", JSON.stringify(ingredientsArray));
+    console.log(`?ingredients=${ingredientsArray.toString()}`)
+    location.search = `?ingredients=${ingredientsArray.toString()}`;
 }
 
 function getStarted() {
@@ -28,30 +40,35 @@ function getStarted() {
     fetchJoke();
 };
 
+function handleAddButtonClick() {
+    displayIngredient($('#userInputIng').val());
+}
+
 $('#userInputIng').keydown(function (e) { 
     if(e.keyCode === 13){
-        displayIngredient()
+        displayIngredient($('#userInputIng').val());
     };
 });
 
 
-function displayIngredient() {
-    if ($('#userInputIng').val() === "") {
+function displayIngredient(ingredient) {
+    if (ingredient === "") {
         return;
     }
-    var userInputIngEl = $('#userInputIng').val();
-    var ingredientListEl = $("#ingredientList");
-    var newIngBtn = $('<div class="ingredient block is-success"></div>');
-    newIngBtn.appendTo(ingredientListEl);
-    newIngBtn.html('<span class="tag is-success">' + userInputIngEl + '<button class="exMark delete is-small"></button></span>');
-    newIngBtn.val(userInputIngEl);
-    //newIngBtn.attr(attributeName, value);
-
-    fetchIngredients();
-    saveIngredient();
-
-// !Nice to have - ability to remove an ingredient by clicking on the button
-
+    let fetchSuccess = true;
+    fetchIngredients(ingredient)
+    .catch((error) => {
+        console.log("Hit Catch block on try/catch for fetchingrtedients");
+        console.log(error);
+        fetchSuccess = false;
+    })
+    .finally(() => {
+        if (fetchSuccess) {
+            makeIngredientButton(ingredient);
+            saveIngredient(ingredient);
+        }
+        $('#userInputIng').val("");
+    })
 };
 
 
@@ -66,76 +83,86 @@ function fetchJoke(){
         });
 };
 
-function fetchIngredients() {
-    var userInputIngEl = $('#userInputIng').val();
-    console.log(userInputIngEl);
-    var appUrl = ("https://www.thecocktaildb.com/api/json/v1/1/filter.php?i="+userInputIngEl)
-
-    fetch(appUrl)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
-            var firstIngredientFilter = data;
-            console.log(firstIngredientFilter);
-            displayImg();
-            
-            function displayImg () {
-                $.each(firstIngredientFilter, function (index, value){
-                    console.log(mainDrinks)
-                    console.log(index);
-                    console.log(value);
-                    if(value.length===0){
-                        $("#ingredientList").empty();
-                        return
-                    }else if(mainDrinks.length===0){
-                        for (i = 0; i < value.length; i++) {
-                            var drinkNameApi = value[i].strDrink;
-                            mainDrinks.push(drinkNameApi)
-                            var newDrinkThumb = $('<button class="drinkName column"></button>').text(drinkNameApi);
-                            newDrinkThumb.appendTo($("#drinkList"));
-                            newDrinkThumb.click(function (e) { 
-                                console.log(e.target.innerHTML)
-                                e.preventDefault();
-                                var urlPath = "./pages/drinkdetail.html?drink="+e.target.innerHTML+"&"
-                                urlPath += getIngredientsForParam();
-                                window.location.assign(urlPath)
-                            });
-                        }
-                    }
-                    else{
-                            $("#drinkList").empty();
-                            storedDrinks3more.length =0
-                            storedDrinks3more = storedDrinks3more.concat(mainDrinks)
-                            mainDrinks.length = 0
-                            console.log(mainDrinks)
-                            console.log(storedDrinks3more)
-                        for (i=0; i < value.length; i++) {
-                            var drinkNameApi = value[i].strDrink;
-                            if(storedDrinks3more.includes(drinkNameApi)){
+function fetchIngredients(ingredient) {
+    //var userInputIngEl = $('#userInputIng').val();
+    console.log(ingredient);
+    var appUrl = ("https://www.thecocktaildb.com/api/json/v1/1/filter.php?i="+ingredient)
+    return fetch(appUrl)
+            .then(function (response) {
+                return response.json();
+            })
+            .catch((error) => {
+                console.log(error);
+                throw error;
+            })
+            .then(function (data) {
+                var firstIngredientFilter = data;
+                console.log(firstIngredientFilter);
+                displayImg();
+                
+                function displayImg () {
+                    $.each(firstIngredientFilter, function (index, value){
+                        console.log(mainDrinks)
+                        console.log(index);
+                        console.log(value);
+                        if(value.length===0){
+                            $("#ingredientList").empty();
+                            return
+                        }else if(mainDrinks.length===0){
+                            for (i = 0; i < value.length; i++) {
+                                var drinkNameApi = value[i].strDrink;
                                 mainDrinks.push(drinkNameApi)
+                                makeAndAddButtonToGrid(drinkNameApi);
                             }
                         }
-                        for (i=0; i < mainDrinks.length; i++){
-                            var newDrinkThumb = $('<button class="drinkName column"></button>').text(mainDrinks[i]);
-                            newDrinkThumb.appendTo($("#drinkList"));
-                            newDrinkThumb.click(function (e) { 
-                                console.log(e.target.innerHTML)
-                                e.preventDefault();
-                                var urlPath = "./pages/drinkdetail.html?drink="+e.target.innerHTML+"&"
-                                urlPath += getIngredientsForParam();
-                                window.location.assign(urlPath)
-                            });
-                            console.log(mainDrinks)
+                        else{
+                                $("#drinkList").empty();
+                                storedDrinks3more.length =0
+                                storedDrinks3more = storedDrinks3more.concat(mainDrinks)
+                                mainDrinks.length = 0
+                                console.log(mainDrinks)
+                                console.log(storedDrinks3more)
+                            for (i=0; i < value.length; i++) {
+                                var drinkNameApi = value[i].strDrink;
+                                if(storedDrinks3more.includes(drinkNameApi)){
+                                    mainDrinks.push(drinkNameApi)
+                                }
+                            }
+                            for (i=0; i < mainDrinks.length; i++){
+                                makeAndAddButtonToGrid(mainDrinks[i]);
+                                console.log(mainDrinks)
+                            }
                         }
-                    }
-                })
+                    })
 
-                
-            };
-        });
+                    
+                };
+            });
 };
 
+function loadDrinkDetailPageWithParams(e) {
+    let urlPath = "./pages/drinkdetail.html?drink="+e.target.innerHTML+"&"
+    urlPath += getIngredientsForParam();
+    window.location.assign(urlPath);
+}
+
+function makeIngredientButton(ingredient) {
+    //var userInputIngEl = $('#userInputIng').val();
+    let currIngArray = JSON.parse(localStorage.getItem("Ingredients")) || [];
+    if (currIngArray.includes(ingredient)) return;
+    var ingredientListEl = $("#ingredientList");
+    var newIngBtn = $('<div class="ingredient block is-success"></div>');
+    newIngBtn.html('<span class="tag is-success">' + ingredient + '<button class="exMark delete is-small"></button></span>');
+    newIngBtn.val(ingredient);
+    newIngBtn.click(deleteIng);
+    newIngBtn.appendTo(ingredientListEl);
+}
+
+function makeAndAddButtonToGrid(btnText) {
+    var newDrinkThumb = $('<button class="drinkName column"></button>').text(btnText);
+    newDrinkThumb.appendTo($("#drinkList"));
+    newDrinkThumb.click(loadDrinkDetailPageWithParams);
+}
 
 function getIngredientsForParam() {
     let paramString = "ingredients="
@@ -151,9 +178,9 @@ function getIngredientsForParam() {
     return paramString;
 }
 
-function saveIngredient() {
+function saveIngredient(ingredient) {
     var oldItems = JSON.parse(localStorage.getItem("Ingredients")) || [];
-    var newItem = $('#userInputIng').val().toLowerCase();
+    var newItem = ingredient.toLowerCase();
     // Use the running list object and add on new items to the old items
     oldItems.push(newItem);
 
@@ -167,15 +194,15 @@ function saveIngredient() {
 //check for search params on load; if there, check for ingredients
 //if ingredients, seperate by comma, then run method to imitate searching them
 onload = () => {
-    let searchParams = new URLSearchParams(location.search);
+    let searchParams = new URLSearchParams(decodeURIComponent(location.search));
+    getStarted();
     if (searchParams.get("ingredients")) {
         let paramsArray = searchParams.get("ingredients").split(",");
         console.log(paramsArray)
         paramsArray.forEach((ingredient) => {
-            $('#userInputIng').val(ingredient);
-            displayIngredient(ingredient);
+            //$('#userInputIng').val(ingredient);
+            console.log(ingredient);
+            displayIngredient(ingredient.trim().toLowerCase());
         })
-        getStarted();
-        clearList();
     }
 };
