@@ -35,6 +35,14 @@
     flex-wrap: wrap;
 }
 
+.ingredient {
+    margin-right: 1.5%;
+}
+
+.tag:not(body) {
+    font-size: 1.2rem;
+}
+
 .item {
     flex: auto;
     margin: 5px;

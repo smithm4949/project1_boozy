@@ -162,7 +162,7 @@ function makeIngredientButton(ingredient) {
     let currIngArray = JSON.parse(localStorage.getItem("Ingredients")) || [];
     if (currIngArray.includes(ingredient)) return;
     var ingredientListEl = $("#ingredientList");
-    var newIngBtn = $('<div class="ingredient block is-success"></div>');
+    var newIngBtn = $('<button class="ingredient button is-success is-medium"></button>');
     newIngBtn.html('<span class="tag is-success">' + ingredient + '<button class="exMark delete is-small"></button></span>');
     newIngBtn.val(ingredient);
     newIngBtn.click(deleteIng);
