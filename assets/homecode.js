@@ -1,6 +1,7 @@
 $('#getStarted').click(getStarted);
 $('#addButton').click(displayIngredient);
 $('#clearList').click(clearList);
+$('.exMark').click(deleteIng);
 
 const params = new URLSearchParams(location.search);
 //access with params.get("param")
@@ -14,6 +15,9 @@ function clearList() {
     $("#drinkList").empty();
     mainDrinks.length = 0
     storedDrinks3more.length = 0
+}
+
+function deleteIng() { // when exMark class button is clicked, run this function to delete the ingredient from the url string
 }
 
 function getStarted() {
@@ -37,10 +41,11 @@ function displayIngredient() {
     }
     var userInputIngEl = $('#userInputIng').val();
     var ingredientListEl = $("#ingredientList");
-    var newIngBtn = $('<li class="item button is-success"><span class="icon is-small"><i class="fas fa-check"></i></span></li>');
+    var newIngBtn = $('<div class="ingredient block is-success"></div>');
     newIngBtn.appendTo(ingredientListEl);
-    newIngBtn.text(userInputIngEl);
+    newIngBtn.html('<span class="tag is-success">' + userInputIngEl + '<button class="exMark delete is-small"></button></span>');
     newIngBtn.val(userInputIngEl);
+    //newIngBtn.attr(attributeName, value);
 
     fetchIngredients();
     saveIngredient();
