@@ -11,7 +11,7 @@
 }
 
 .quote {
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     font-weight: 200;
     text-align: center;
 }
@@ -53,4 +53,9 @@
 
 #gif {
     object-fit: contain;
+}
+
+.card {
+    box-shadow: 0 0.5em 1em -0.125em rgba(206, 111, 206, .9), 0 0 0 1px rgba(206, 111, 206, 0.09);
+    margin: 0% 4%;
 }

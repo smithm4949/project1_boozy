@@ -24,6 +24,11 @@ Alexander: CSS, JavaScript
 
 This project is under development
 
+### GIFS - as of 12/19/2022
+<img src=./assets/images/GIF.gif style="width:40rem">
+<br></br>
+
+
 ## Screenshots - TBD
 
 ## Todo
