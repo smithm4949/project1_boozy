@@ -1,4 +1,9 @@
-// ISSUE: Test on Adam & Eve - Title only shows "Adam"
+$('.logo').click(goHomePg);
+function goHomePg () {
+    localStorage.clear();
+    let urlPath = "../index.html"
+    window.location.assign(urlPath);
+}
 
 const params = new URLSearchParams(location.search);
 const drink = params.get('drink');

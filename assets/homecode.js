@@ -1,6 +1,7 @@
 $('#getStarted').click(getStarted);
 $('#addButton').click(handleAddButtonClick);
 $('#clearList').click(clearList);
+$('.logo').click(goHomePg);
 
 const params = new URLSearchParams(location.search);
 //access with params.get("param")
@@ -8,8 +9,15 @@ const params = new URLSearchParams(location.search);
 mainDrinks = []
 storedDrinks3more = []
 
+function goHomePg () {
+    localStorage.clear();
+    $('#ingredientSection').attr("style", "display:none");
+    $('#introCard').attr("style", "display:block");
+}
+
 function clearList() {
     localStorage.clear();
+    localStorage.setItem("GetStarted", JSON.stringify("Get Started was clicked."));
     $("#ingredientList").empty();
     $("#drinkList").empty();
     mainDrinks.length = 0;
@@ -33,10 +41,10 @@ function deleteIng(e) {
 }
 
 function getStarted() {
-    console.log("I Work");
-    $('#ingredientSection').attr("style", "display:block");
     $('#introCard').attr("style", "display:none");
+    $('#ingredientSection').attr("style", "display:block");
     localStorage.clear();
+    localStorage.setItem("GetStarted", JSON.stringify("Get Started was clicked."));
     fetchJoke();
 };
 
@@ -194,15 +202,20 @@ function saveIngredient(ingredient) {
 //check for search params on load; if there, check for ingredients
 //if ingredients, seperate by comma, then run method to imitate searching them
 onload = () => {
-    let searchParams = new URLSearchParams(decodeURIComponent(location.search));
-    getStarted();
-    if (searchParams.get("ingredients")) {
-        let paramsArray = searchParams.get("ingredients").split(",");
-        console.log(paramsArray)
-        paramsArray.forEach((ingredient) => {
-            //$('#userInputIng').val(ingredient);
-            console.log(ingredient);
-            displayIngredient(ingredient.trim().toLowerCase());
-        })
+    if(localStorage.length === 0) {
+        goHomePg ();
+    } else {
+        let searchParams = new URLSearchParams(decodeURIComponent(location.search));
+        getStarted();
+        if (searchParams.get("ingredients")) {
+            let paramsArray = searchParams.get("ingredients").split(",");
+            console.log(paramsArray)
+            paramsArray.forEach((ingredient) => {
+                //$('#userInputIng').val(ingredient);
+                console.log(ingredient);
+                displayIngredient(ingredient.trim().toLowerCase());
+            })
+        }
     }
+
 };
