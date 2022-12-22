@@ -157,11 +157,18 @@ function saveIngredient() {
     $('#userInputIng').val("");   
 };
 
+//check for search params on load; if there, check for ingredients
+//if ingredients, seperate by comma, then run method to imitate searching them
 onload = () => {
-    if (location.search != '') {
+    let searchParams = new URLSearchParams(location.search);
+    if (searchParams.get("ingredients")) {
+        let paramsArray = searchParams.get("ingredients").split(",");
+        console.log(paramsArray)
+        paramsArray.forEach((ingredient) => {
+            $('#userInputIng').val(ingredient);
+            displayIngredient(ingredient);
+        })
         getStarted();
         clearList();
-        $('#userInputIng').val(params.get("ingredients"));
-        displayIngredient();
     }
 };
