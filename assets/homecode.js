@@ -86,15 +86,7 @@ function fetchIngredients() {
                         for (i = 0; i < value.length; i++) {
                             var drinkNameApi = value[i].strDrink;
                             mainDrinks.push(drinkNameApi)
-                            var newDrinkThumb = $('<button class="drinkName column"></button>').text(drinkNameApi);
-                            newDrinkThumb.appendTo($("#drinkList"));
-                            newDrinkThumb.click(function (e) { 
-                                console.log(e.target.innerHTML)
-                                e.preventDefault();
-                                var urlPath = "./pages/drinkdetail.html?drink="+e.target.innerHTML+"&"
-                                urlPath += getIngredientsForParam();
-                                window.location.assign(urlPath)
-                            });
+                            makeAndAddButtonToGrid(drinkNameApi);
                         }
                     }
                     else{
@@ -111,15 +103,7 @@ function fetchIngredients() {
                             }
                         }
                         for (i=0; i < mainDrinks.length; i++){
-                            var newDrinkThumb = $('<button class="drinkName column"></button>').text(mainDrinks[i]);
-                            newDrinkThumb.appendTo($("#drinkList"));
-                            newDrinkThumb.click(function (e) { 
-                                console.log(e.target.innerHTML)
-                                e.preventDefault();
-                                var urlPath = "./pages/drinkdetail.html?drink="+e.target.innerHTML+"&"
-                                urlPath += getIngredientsForParam();
-                                window.location.assign(urlPath)
-                            });
+                            makeAndAddButtonToGrid(mainDrinks[i]);
                             console.log(mainDrinks)
                         }
                     }
@@ -129,6 +113,18 @@ function fetchIngredients() {
             };
         });
 };
+
+function loadDrinkDetailPageWithParams(e) {
+    let urlPath = "./pages/drinkdetail.html?drink="+e.target.innerHTML+"&"
+    urlPath += getIngredientsForParam();
+    window.location.assign(urlPath);
+}
+
+function makeAndAddButtonToGrid(btnText) {
+    var newDrinkThumb = $('<button class="drinkName column"></button>').text(btnText);
+    newDrinkThumb.appendTo($("#drinkList"));
+    newDrinkThumb.click(loadDrinkDetailPageWithParams);
+}
 
 function getIngredientsForParam() {
     let paramString = "ingredients="
