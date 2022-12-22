@@ -54,6 +54,7 @@ function displayIngredient() {
 
 };
 
+
 function fetchJoke(){
     fetch("https://v2.jokeapi.dev/joke/Miscellaneous,Pun,Spooky,Christmas?blacklistFlags=racist,sexist,explicit&type=single")
         .then(function (response) {

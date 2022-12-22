@@ -24,14 +24,10 @@ Alexander: CSS, JavaScript
 
 This project is under development
 
-### GIFS - as of 12/19/2022
+### GIFS - as of 12/21/2022
 <img src=./assets/images/GIF.gif style="width:40rem">
 <br></br>
 
-<<<<<<< HEAD
-=======
-
->>>>>>> c040d7599b716774b63454acc43b8aa86583d4b9
 ## Screenshots - TBD
 
 ## Todo
