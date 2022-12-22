@@ -43,8 +43,23 @@
     margin: 20px 0px;
 }
 
+.detailedHeader {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .small-logo{
-    margin: 10px;
+    margin-right: 1%;
+    max-height: 90px;
+}
+
+#back_button{
+    margin-left: 2%;
+    display: flex;
+    background-color: #ce72e0;
+    border: solid 1px black;
 }
 
 #drinkPic {

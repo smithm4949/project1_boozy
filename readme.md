@@ -24,10 +24,9 @@ Alexander: CSS, JavaScript
 
 This project is under development
 
-### GIFS - as of 12/19/2022
+### GIFS - as of 12/21/2022
 <img src=./assets/images/GIF.gif style="width:40rem">
 <br></br>
-
 
 ## Screenshots - TBD
 
@@ -94,3 +93,4 @@ Get calories given ingredients from recipe:
 
 ## Tutorials
 *[GeeksforGeeks.org](https://www.geeksforgeeks.org/javascript-trigger-a-button-on-enter-key/)
+*[stackOverflow](https://stackoverflow.com/questions/47132232/how-to-keep-duplicates-of-an-array): Line of code for creating a new array with only duplicates

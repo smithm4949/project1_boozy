@@ -1,6 +1,7 @@
 $('#getStarted').click(getStarted);
 $('#addButton').click(displayIngredient);
 $('#clearList').click(clearList);
+$('.exMark').click(deleteIng);
 
 const params = new URLSearchParams(location.search);
 //access with params.get("param")
@@ -16,6 +17,9 @@ function clearList() {
     storedDrinks3more.length = 0;
     params.delete("ingredients");
     location.search = `?${params.toString()}`;
+}
+
+function deleteIng() { // when exMark class button is clicked, run this function to delete the ingredient from the url string
 }
 
 function getStarted() {
@@ -37,6 +41,7 @@ function displayIngredient() {
     if ($('#userInputIng').val() === "") {
         return;
     }
+<<<<<<< HEAD
     let fetchSuccess = true;
     fetchIngredients()
     .catch((error) => {
@@ -51,13 +56,26 @@ function displayIngredient() {
         }
         $('#userInputIng').val("");
     })
+=======
+    var userInputIngEl = $('#userInputIng').val();
+    var ingredientListEl = $("#ingredientList");
+    var newIngBtn = $('<div class="ingredient block is-success"></div>');
+    newIngBtn.appendTo(ingredientListEl);
+    newIngBtn.html('<span class="tag is-success">' + userInputIngEl + '<button class="exMark delete is-small"></button></span>');
+    newIngBtn.val(userInputIngEl);
+    //newIngBtn.attr(attributeName, value);
+
+    fetchIngredients();
+    saveIngredient();
+>>>>>>> main
 
 // !Nice to have - ability to remove an ingredient by clicking on the button
 
 };
 
+
 function fetchJoke(){
-    fetch("https://v2.jokeapi.dev/joke/Programming?type=single")
+    fetch("https://v2.jokeapi.dev/joke/Miscellaneous,Pun,Spooky,Christmas?blacklistFlags=racist,sexist,explicit&type=single")
         .then(function (response) {
             return response.json();
         })
@@ -124,6 +142,7 @@ function fetchIngredients() {
             });
 };
 
+<<<<<<< HEAD
 function loadDrinkDetailPageWithParams(e) {
     let urlPath = "./pages/drinkdetail.html?drink="+e.target.innerHTML+"&"
     urlPath += getIngredientsForParam();
@@ -144,6 +163,8 @@ function makeAndAddButtonToGrid(btnText) {
     newDrinkThumb.appendTo($("#drinkList"));
     newDrinkThumb.click(loadDrinkDetailPageWithParams);
 }
+=======
+>>>>>>> main
 
 function getIngredientsForParam() {
     let paramString = "ingredients="
