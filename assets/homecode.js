@@ -1,5 +1,5 @@
 $('#getStarted').click(getStarted);
-$('#addButton').click(displayIngredient);
+$('#addButton').click(handleAddButtonClick);
 $('#clearList').click(clearList);
 
 const params = new URLSearchParams(location.search);
@@ -20,12 +20,15 @@ function clearList() {
 
 // when exMark class button is clicked, run this function to delete the ingredient from the url string
 function deleteIng(e) {
+    if (!e.target.classList.contains("exMark")) return;
     //get localstorage ing array, remove ingredient, save to localstorage, refresh page with new params
     let ingredientsArray = JSON.parse(localStorage.getItem("Ingredients")) || [];
     let ingredientIndex = ingredientsArray.indexOf(e.target.parentElement.textContent);
-    // Store the unique items - no duplicates
+    console.log(ingredientsArray)
     ingredientsArray.splice(ingredientIndex, 1);
+    console.log(ingredientsArray)
     localStorage.setItem("Ingredients", JSON.stringify(ingredientsArray));
+    console.log(`?ingredients=${ingredientsArray.toString()}`)
     location.search = `?ingredients=${ingredientsArray.toString()}`;
 }
 
@@ -37,19 +40,23 @@ function getStarted() {
     fetchJoke();
 };
 
+function handleAddButtonClick() {
+    displayIngredient($('#userInputIng').val());
+}
+
 $('#userInputIng').keydown(function (e) { 
     if(e.keyCode === 13){
-        displayIngredient()
+        displayIngredient($('#userInputIng').val());
     };
 });
 
 
-function displayIngredient() {
-    if ($('#userInputIng').val() === "") {
+function displayIngredient(ingredient) {
+    if (ingredient === "") {
         return;
     }
     let fetchSuccess = true;
-    fetchIngredients()
+    fetchIngredients(ingredient)
     .catch((error) => {
         console.log("Hit Catch block on try/catch for fetchingrtedients");
         console.log(error);
@@ -57,8 +64,8 @@ function displayIngredient() {
     })
     .finally(() => {
         if (fetchSuccess) {
-            makeIngredientButton();
-            saveIngredient();
+            makeIngredientButton(ingredient);
+            saveIngredient(ingredient);
         }
         $('#userInputIng').val("");
     })
@@ -76,10 +83,10 @@ function fetchJoke(){
         });
 };
 
-function fetchIngredients() {
-    var userInputIngEl = $('#userInputIng').val();
-    console.log(userInputIngEl);
-    var appUrl = ("https://www.thecocktaildb.com/api/json/v1/1/filter.php?i="+userInputIngEl)
+function fetchIngredients(ingredient) {
+    //var userInputIngEl = $('#userInputIng').val();
+    console.log(ingredient);
+    var appUrl = ("https://www.thecocktaildb.com/api/json/v1/1/filter.php?i="+ingredient)
     return fetch(appUrl)
             .then(function (response) {
                 return response.json();
@@ -139,14 +146,16 @@ function loadDrinkDetailPageWithParams(e) {
     window.location.assign(urlPath);
 }
 
-function makeIngredientButton() {
-    var userInputIngEl = $('#userInputIng').val();
+function makeIngredientButton(ingredient) {
+    //var userInputIngEl = $('#userInputIng').val();
+    let currIngArray = JSON.parse(localStorage.getItem("Ingredients")) || [];
+    if (currIngArray.includes(ingredient)) return;
     var ingredientListEl = $("#ingredientList");
     var newIngBtn = $('<div class="ingredient block is-success"></div>');
-    newIngBtn.html('<span class="tag is-success">' + userInputIngEl + '<button class="exMark delete is-small"></button></span>');
-    newIngBtn.val(userInputIngEl);
+    newIngBtn.html('<span class="tag is-success">' + ingredient + '<button class="exMark delete is-small"></button></span>');
+    newIngBtn.val(ingredient);
+    newIngBtn.click(deleteIng);
     newIngBtn.appendTo(ingredientListEl);
-    $('.exMark').click(deleteIng);
 }
 
 function makeAndAddButtonToGrid(btnText) {
@@ -169,9 +178,9 @@ function getIngredientsForParam() {
     return paramString;
 }
 
-function saveIngredient() {
+function saveIngredient(ingredient) {
     var oldItems = JSON.parse(localStorage.getItem("Ingredients")) || [];
-    var newItem = $('#userInputIng').val().toLowerCase();
+    var newItem = ingredient.toLowerCase();
     // Use the running list object and add on new items to the old items
     oldItems.push(newItem);
 
@@ -191,8 +200,9 @@ onload = () => {
         let paramsArray = searchParams.get("ingredients").split(",");
         console.log(paramsArray)
         paramsArray.forEach((ingredient) => {
-            $('#userInputIng').val(ingredient);
-            displayIngredient(ingredient);
+            //$('#userInputIng').val(ingredient);
+            console.log(ingredient);
+            displayIngredient(ingredient.trim().toLowerCase());
         })
     }
 };
