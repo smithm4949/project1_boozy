@@ -28,7 +28,10 @@
             <section id="introCard" class="section" style="display:block">
               <h1 class="title">What's sippin tonight?</h1>
               <h2 class="subtitle">
-                Welcome to your new favorite drink app! Type in a spirit you want in your drink and pick a <strong>ConCocktail</strong> for calorie information.
+                Welcome to your new favorite drink app!
+              </h2>
+              <h2 class="subtitle">
+                You can return to this page anytime by clicking on the <strong>ConCocktail</strong> logo.
               </h2>
               <button id="getStarted" class="button is-medium is-responsive is-primary">
                 Get Started
@@ -40,11 +43,10 @@
             <!--MAIN CONTENT -->
             <section id="ingredientSection" class="section is-medium" style="display:none">
               <h1 class="title">Ingredients</h1>
-              <h2 class="subtitle">
-               Type in what spirit you would like in your <strong>drink</strong>!
-              </h2>
+              <h2 class="subtitle"> Type in what spirit and ingredients you would like in your <strong>drink</strong>. 
+              <br> Get fancy with it - You can have as many ingredients as you like! </h2>
 
-              <div class="field has-addons">
+              <div id="inputAndAdd" class="field has-addons">
                 <div>
                   <input id="userInputIng" class="input is-primary" type="text" placeholder="Input ingredient">
                 </div>
@@ -53,17 +55,17 @@
                 </div>
               </div>
 
-              <div class="control">
-                <a id="clearList" class="button is-danger is-light is-small">Clear Ingredients Listed</a>
-              </div>
-              
-              <div class="columns is-mobile">
+              <div id="clearAndIngList" class="columns is-mobile" style="display:none">
+                <div class="control">
+                  <a id="clearList" class="button is-danger is-light is-small">Clear Ingredients Listed</a>
+                </div>  
                 <div class="">
                   <ul id="ingredientList" >
                   </ul>
                 </div>
               </div>
-              
+              <h2 id="pickDrink" style="display:none"> Pick a <strong>ConCocktail</strong> below for caloric information and other <strong>fun</strong> information.</h2>
+
               <div class="container is-fluid">
                 <ul id="drinkList" display="block">
                 </ul>
@@ -80,7 +82,7 @@
         </main>
 
         <!--FOOTER-->
-        <div class="card">
+        <div id="jokeCard" class="card">
           <div class="card-content">
             <p id="joke" class="title quote">
               “Dear alcohol, We had a deal where you would make me funnier, smarter, and a better dancer… I saw the video… we need to talk.”

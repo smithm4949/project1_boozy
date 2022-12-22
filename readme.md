@@ -1,42 +1,18 @@
-# Project 1 - ConCocktail
+# ConCocktail
+
+## Project status
+This project is under development
 
 ## Description
 
-This application will generate cocktail options when a user inputs any type of ingredients. The application will also provide total calories for a chosen drink. Lastly, the application will tell you how to burn the calories.
+This application will generate cocktail options when a user inputs any type of ingredients. The application will also provide total calories for a chosen drink and the application will tell you how to burn the calories. Lastly, the application has random jokes and fun facts.
 
-## Deployment
+There are 5 APIs utilized in the application. Please see Technologies Used section below for urls.
 
-This website is not currently deployed
+### Usage
+Do you want to order a drink but you don't know the name of drinks? Are you boring and need some fun facts and jokes to help you be cooler? Are you going on a date and you need a "Hitch" friend to help you with all the above?
 
-## Authors and acknowledgment
-
-The group members involved in this project are MaSandra Ewing, Alexander Carr, and Myles Smith
-
-The group leader is Myles Smith. The roles are being divided as follows:
-
-Myles: HTML, Presentation/pitch
-
-Masandra: CSS, JavaScript
-
-Alexander: CSS, JavaScript
-
-## Project status
-
-This project is under development
-
-### GIFS - as of 12/21/2022
-<img src=./assets/images/GIF.gif style="width:40rem">
-<br></br>
-
-## Screenshots - TBD
-
-## Todo
-
-Setup kanban or similar for tasks and assignments
-Setup repo for group collaboration
-Breakup project into small tasks
-Assign tasks and add to kanban
-Choose style framework -> bulma
+We got you! This application will be your most important bar asset.
 
 ## User Story
 
@@ -44,53 +20,79 @@ AS An undecesive drinker
 I want to see a list of cocktails that use certain ingredients
 SO that I get a drink recommendation
 
-## Project Requirements
+## Deployment
 
-Use a CSS framework other than Bootstrap.
+This website is not currently deployed
 
-Be deployed to GitHub Pages.
+## Application Links
+[ConCocktail Deployed Application Site](placeholder)
 
-Be interactive (in other words, accept and respond to user input).
+[GitHub Repository](placeholder)
 
-Use at least two server-side APIs Links to an external site..
+## Authors and acknowledgment
 
-Use modals instead of alerts, confirms, or prompts.
+The group members involved in this project are MaSandra Ewing, Alexander Carr, and Myles Smith
 
-Use client-side storage to store persistent data.
+The group leader is Myles Smith. All members contributed to the following: 
+* HTML
+* CSS - Bulma and custom
+* JavaScript - Vanilla JS and JQuery
+* Presentation & Pitch
 
-Be responsive.
 
-Have a polished UI.
 
-Have a clean repository that meets quality coding standards (file structure, naming conventions, best practices for class/id naming conventions, indentation, quality comments, and so on).
+## ConCocktail GIFS - as of 12/22/2022
+<img src=./assets/images/GIF.gif style="width:40rem">
+<br></br>
 
-Have a quality README (including a unique name, description, technologies used, screenshot, and link to the deployed application).
+## ConCocktail Screenshots
+Homepage <br>
+<img src=./assets/images/screenshot_homepage.png style="width:30rem">
 
-## Presentation Requirements
+User Input Page <br>
+<img src=./assets/images/screenshot_userInputPage.png style="width:30rem">
 
-Elevator pitch: A one-minute description of your application.
+Drink Detail Page <br>
+<img src=./assets/images/screenshot_drinkDetail.png style="width:30rem">
+<br>
 
-Concept: What is your user story? What was your motivation for development?
+## Tasks Completed
+```
+* Used the CSS framework of Bulma.
+* Deployed to GitHub Pages.
+* Created an interactive user application.
+* Utilized 5 server-side APIs links to an external site.
+* Enabled client-side storage capabilities to store persistent data.
+* Enhanced the application to be responsive to different devices.
+* Displayed a polished UI.
+* Met standards of a clean repository with quality coding standards (file structure, naming conventions, best practices for class/id naming conventions, indentation, quality comments, and so on).
+* Presented a quality README which includes a unique name, description, technologies used, GIF, screenshots, and link to the deployed application.
+```
+## Presentation Requirements Completed
+Reference corresponding PowerPoint presentation
+```
+* Elevator pitch: A one-minute description of your application.
+* Concept: What is your user story? What was your motivation for development?
+* Process: What were the technologies used? How were tasks and roles broken down and assigned? What challenges did you encounter? What were your successes?
+* Demo: Show your stuff!
+* Directions for future development.
+* Links to the deployed application and the GitHub repository.
+```
+## Technologies Utilized
+The following APIs were utilized in this application:
 
-Process: What were the technologies used? How were tasks and roles broken down and assigned? What challenges did you encounter? What were your successes?
+*[CocktailDB](https://www.thecocktaildb.com/) <br>
+*[JokeAPI](https://v2.jokeapi.dev/)<br>
+*[CalorieNinjas](https://calorieninjas.com/api)<br>
+*[GIPHY Developers](https://developers.giphy.com/)<br>
+*[Useless Facts](https://uselessfacts.jsph.pl/)
 
-Demo: Show your stuff!
+CSS Framework:
 
-Directions for future development.
+*[Bulma](https://bulma.io/)
 
-Links to the deployed application and the GitHub repository.
-
-## Technologies used
-
-CocktailDB api
-Calorieninja api
-Bulma
-
-## Project Tasks
-
-Get list of cocktails from ingredients: MaSandra
-Get calories given ingredients from recipe:
-
-## Tutorials
-*[GeeksforGeeks.org](https://www.geeksforgeeks.org/javascript-trigger-a-button-on-enter-key/)
+## Tutorials Utilized
+*[GeeksforGeeks.org](https://www.geeksforgeeks.org/javascript-trigger-a-button-on-enter-key/): Enter key trigger button <br>
 *[stackOverflow](https://stackoverflow.com/questions/47132232/how-to-keep-duplicates-of-an-array): Line of code for creating a new array with only duplicates
+
+## License

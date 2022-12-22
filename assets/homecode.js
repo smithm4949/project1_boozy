@@ -1,6 +1,7 @@
 $('#getStarted').click(getStarted);
 $('#addButton').click(handleAddButtonClick);
 $('#clearList').click(clearList);
+$('.logo').click(goHomePg);
 
 const params = new URLSearchParams(location.search);
 //access with params.get("param")
@@ -8,8 +9,15 @@ const params = new URLSearchParams(location.search);
 mainDrinks = []
 storedDrinks3more = []
 
+function goHomePg () {
+    localStorage.clear();
+    $('#ingredientSection').attr("style", "display:none");
+    $('#introCard').attr("style", "display:block");
+}
+
 function clearList() {
     localStorage.clear();
+    localStorage.setItem("GetStarted", JSON.stringify("Get Started was clicked."));
     $("#ingredientList").empty();
     $("#drinkList").empty();
     mainDrinks.length = 0;
@@ -33,10 +41,10 @@ function deleteIng(e) {
 }
 
 function getStarted() {
-    console.log("I Work");
-    $('#ingredientSection').attr("style", "display:block");
     $('#introCard').attr("style", "display:none");
+    $('#ingredientSection').attr("style", "display:block");
     localStorage.clear();
+    localStorage.setItem("GetStarted", JSON.stringify("Get Started was clicked."));
     fetchJoke();
 };
 
@@ -52,6 +60,9 @@ $('#userInputIng').keydown(function (e) {
 
 
 function displayIngredient(ingredient) {
+    $('#clearAndIngList').attr("style", "display:block");
+    $('#pickDrink').attr("style", "display:block");
+
     if (ingredient === "") {
         return;
     }
@@ -84,7 +95,7 @@ function fetchJoke(){
 };
 
 function fetchIngredients(ingredient) {
-    //var userInputIngEl = $('#userInputIng').val();
+    
     console.log(ingredient);
     var appUrl = ("https://www.thecocktaildb.com/api/json/v1/1/filter.php?i="+ingredient)
     return fetch(appUrl)
@@ -151,7 +162,7 @@ function makeIngredientButton(ingredient) {
     let currIngArray = JSON.parse(localStorage.getItem("Ingredients")) || [];
     if (currIngArray.includes(ingredient)) return;
     var ingredientListEl = $("#ingredientList");
-    var newIngBtn = $('<div class="ingredient block is-success"></div>');
+    var newIngBtn = $('<button class="ingredient button is-success is-medium"></button>');
     newIngBtn.html('<span class="tag is-success">' + ingredient + '<button class="exMark delete is-small"></button></span>');
     newIngBtn.val(ingredient);
     newIngBtn.click(deleteIng);
@@ -194,15 +205,20 @@ function saveIngredient(ingredient) {
 //check for search params on load; if there, check for ingredients
 //if ingredients, seperate by comma, then run method to imitate searching them
 onload = () => {
-    let searchParams = new URLSearchParams(decodeURIComponent(location.search));
-    getStarted();
-    if (searchParams.get("ingredients")) {
-        let paramsArray = searchParams.get("ingredients").split(",");
-        console.log(paramsArray)
-        paramsArray.forEach((ingredient) => {
-            //$('#userInputIng').val(ingredient);
-            console.log(ingredient);
-            displayIngredient(ingredient.trim().toLowerCase());
-        })
+    if(localStorage.length === 0) {
+        goHomePg ();
+    } else {
+        let searchParams = new URLSearchParams(decodeURIComponent(location.search));
+        getStarted();
+        if (searchParams.get("ingredients")) {
+            let paramsArray = searchParams.get("ingredients").split(",");
+            console.log(paramsArray)
+            paramsArray.forEach((ingredient) => {
+                //$('#userInputIng').val(ingredient);
+                console.log(ingredient);
+                displayIngredient(ingredient.trim().toLowerCase());
+            })
+        }
     }
+
 };
