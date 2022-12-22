@@ -37,10 +37,20 @@ function displayIngredient() {
     if ($('#userInputIng').val() === "") {
         return;
     }
-    makeIngredientButton();
-
-    fetchIngredients();
-    saveIngredient();
+    let fetchSuccess = true;
+    fetchIngredients()
+    .catch((error) => {
+        console.log("Hit Catch block on try/catch for fetchingrtedients");
+        console.log(error);
+        fetchSuccess = false;
+    })
+    .finally(() => {
+        if (fetchSuccess) {
+            makeIngredientButton();
+            saveIngredient();
+        }
+        $('#userInputIng').val("");
+    })
 
 // !Nice to have - ability to remove an ingredient by clicking on the button
 
@@ -61,54 +71,57 @@ function fetchIngredients() {
     var userInputIngEl = $('#userInputIng').val();
     console.log(userInputIngEl);
     var appUrl = ("https://www.thecocktaildb.com/api/json/v1/1/filter.php?i="+userInputIngEl)
-
-    fetch(appUrl)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
-            var firstIngredientFilter = data;
-            console.log(firstIngredientFilter);
-            displayImg();
-            
-            function displayImg () {
-                $.each(firstIngredientFilter, function (index, value){
-                    console.log(mainDrinks)
-                    console.log(index);
-                    console.log(value);
-                    if(value.length===0){
-                        $("#ingredientList").empty();
-                        return
-                    }else if(mainDrinks.length===0){
-                        for (i = 0; i < value.length; i++) {
-                            var drinkNameApi = value[i].strDrink;
-                            mainDrinks.push(drinkNameApi)
-                            makeAndAddButtonToGrid(drinkNameApi);
-                        }
-                    }
-                    else{
-                            $("#drinkList").empty();
-                            storedDrinks3more.length =0
-                            storedDrinks3more = storedDrinks3more.concat(mainDrinks)
-                            mainDrinks.length = 0
-                            console.log(mainDrinks)
-                            console.log(storedDrinks3more)
-                        for (i=0; i < value.length; i++) {
-                            var drinkNameApi = value[i].strDrink;
-                            if(storedDrinks3more.includes(drinkNameApi)){
+    return fetch(appUrl)
+            .then(function (response) {
+                return response.json();
+            })
+            .catch((error) => {
+                console.log(error);
+                throw error;
+            })
+            .then(function (data) {
+                var firstIngredientFilter = data;
+                console.log(firstIngredientFilter);
+                displayImg();
+                
+                function displayImg () {
+                    $.each(firstIngredientFilter, function (index, value){
+                        console.log(mainDrinks)
+                        console.log(index);
+                        console.log(value);
+                        if(value.length===0){
+                            $("#ingredientList").empty();
+                            return
+                        }else if(mainDrinks.length===0){
+                            for (i = 0; i < value.length; i++) {
+                                var drinkNameApi = value[i].strDrink;
                                 mainDrinks.push(drinkNameApi)
+                                makeAndAddButtonToGrid(drinkNameApi);
                             }
                         }
-                        for (i=0; i < mainDrinks.length; i++){
-                            makeAndAddButtonToGrid(mainDrinks[i]);
-                            console.log(mainDrinks)
+                        else{
+                                $("#drinkList").empty();
+                                storedDrinks3more.length =0
+                                storedDrinks3more = storedDrinks3more.concat(mainDrinks)
+                                mainDrinks.length = 0
+                                console.log(mainDrinks)
+                                console.log(storedDrinks3more)
+                            for (i=0; i < value.length; i++) {
+                                var drinkNameApi = value[i].strDrink;
+                                if(storedDrinks3more.includes(drinkNameApi)){
+                                    mainDrinks.push(drinkNameApi)
+                                }
+                            }
+                            for (i=0; i < mainDrinks.length; i++){
+                                makeAndAddButtonToGrid(mainDrinks[i]);
+                                console.log(mainDrinks)
+                            }
                         }
-                    }
-                })
+                    })
 
-                
-            };
-        });
+                    
+                };
+            });
 };
 
 function loadDrinkDetailPageWithParams(e) {
