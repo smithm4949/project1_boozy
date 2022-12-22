@@ -1,7 +1,6 @@
 $('#getStarted').click(getStarted);
 $('#addButton').click(displayIngredient);
 $('#clearList').click(clearList);
-$('.exMark').click(deleteIng);
 
 const params = new URLSearchParams(location.search);
 //access with params.get("param")
@@ -19,7 +18,15 @@ function clearList() {
     location.search = `?${params.toString()}`;
 }
 
-function deleteIng() { // when exMark class button is clicked, run this function to delete the ingredient from the url string
+// when exMark class button is clicked, run this function to delete the ingredient from the url string
+function deleteIng(e) {
+    //get localstorage ing array, remove ingredient, save to localstorage, refresh page with new params
+    let ingredientsArray = JSON.parse(localStorage.getItem("Ingredients")) || [];
+    let ingredientIndex = ingredientsArray.indexOf(e.target.parentElement.textContent);
+    // Store the unique items - no duplicates
+    ingredientsArray.splice(ingredientIndex, 1);
+    localStorage.setItem("Ingredients", JSON.stringify(ingredientsArray));
+    location.search = `?ingredients=${ingredientsArray.toString()}`;
 }
 
 function getStarted() {
@@ -41,7 +48,6 @@ function displayIngredient() {
     if ($('#userInputIng').val() === "") {
         return;
     }
-<<<<<<< HEAD
     let fetchSuccess = true;
     fetchIngredients()
     .catch((error) => {
@@ -56,21 +62,6 @@ function displayIngredient() {
         }
         $('#userInputIng').val("");
     })
-=======
-    var userInputIngEl = $('#userInputIng').val();
-    var ingredientListEl = $("#ingredientList");
-    var newIngBtn = $('<div class="ingredient block is-success"></div>');
-    newIngBtn.appendTo(ingredientListEl);
-    newIngBtn.html('<span class="tag is-success">' + userInputIngEl + '<button class="exMark delete is-small"></button></span>');
-    newIngBtn.val(userInputIngEl);
-    //newIngBtn.attr(attributeName, value);
-
-    fetchIngredients();
-    saveIngredient();
->>>>>>> main
-
-// !Nice to have - ability to remove an ingredient by clicking on the button
-
 };
 
 
@@ -142,7 +133,6 @@ function fetchIngredients() {
             });
 };
 
-<<<<<<< HEAD
 function loadDrinkDetailPageWithParams(e) {
     let urlPath = "./pages/drinkdetail.html?drink="+e.target.innerHTML+"&"
     urlPath += getIngredientsForParam();
@@ -152,10 +142,11 @@ function loadDrinkDetailPageWithParams(e) {
 function makeIngredientButton() {
     var userInputIngEl = $('#userInputIng').val();
     var ingredientListEl = $("#ingredientList");
-    var newIngBtn = $('<li class="item button is-success"><span class="icon is-small"><i class="fas fa-check"></i></span></li>');
-    newIngBtn.text(userInputIngEl);
+    var newIngBtn = $('<div class="ingredient block is-success"></div>');
+    newIngBtn.html('<span class="tag is-success">' + userInputIngEl + '<button class="exMark delete is-small"></button></span>');
     newIngBtn.val(userInputIngEl);
     newIngBtn.appendTo(ingredientListEl);
+    $('.exMark').click(deleteIng);
 }
 
 function makeAndAddButtonToGrid(btnText) {
@@ -163,8 +154,6 @@ function makeAndAddButtonToGrid(btnText) {
     newDrinkThumb.appendTo($("#drinkList"));
     newDrinkThumb.click(loadDrinkDetailPageWithParams);
 }
-=======
->>>>>>> main
 
 function getIngredientsForParam() {
     let paramString = "ingredients="
@@ -196,7 +185,7 @@ function saveIngredient() {
 //check for search params on load; if there, check for ingredients
 //if ingredients, seperate by comma, then run method to imitate searching them
 onload = () => {
-    let searchParams = new URLSearchParams(location.search);
+    let searchParams = new URLSearchParams(decodeURIComponent(location.search));
     getStarted();
     if (searchParams.get("ingredients")) {
         let paramsArray = searchParams.get("ingredients").split(",");
