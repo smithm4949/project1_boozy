@@ -7,7 +7,7 @@ const params = new URLSearchParams(location.search);
 //access with params.get("param")
 
 mainDrinks = []
-storedDrinks3more = []
+sotredDrinks2plus = []
 
 function goHomePg () {
     localStorage.clear();
@@ -17,7 +17,9 @@ function goHomePg () {
     $('#pickDrink').attr("style", "display:none");
     $('#ingredientSection').attr("style", "display:none");
     $('#introCard').attr("style", "display:block");
-}
+    mainDrinks.length = 0
+    sotredDrinks2plus.length = 0
+  }
 
 function clearList() {
     localStorage.clear();
@@ -25,7 +27,7 @@ function clearList() {
     $("#ingredientList").empty();
     $("#drinkList").empty();
     mainDrinks.length = 0;
-    storedDrinks3more.length = 0;
+    sotredDrinks2plus.length = 0;
     params.delete("ingredients");
     location.search = `?${params.toString()}`;
 }
@@ -36,11 +38,8 @@ function deleteIng(e) {
     //get localstorage ing array, remove ingredient, save to localstorage, refresh page with new params
     let ingredientsArray = JSON.parse(localStorage.getItem("Ingredients")) || [];
     let ingredientIndex = ingredientsArray.indexOf(e.target.parentElement.textContent);
-    console.log(ingredientsArray)
     ingredientsArray.splice(ingredientIndex, 1);
-    console.log(ingredientsArray)
     localStorage.setItem("Ingredients", JSON.stringify(ingredientsArray));
-    console.log(`?ingredients=${ingredientsArray.toString()}`)
     location.search = `?ingredients=${ingredientsArray.toString()}`;
 }
 
@@ -93,14 +92,11 @@ function fetchJoke(){
             return response.json();
         })
         .then(function (data) {
-            console.log(data.joke)
             $('#joke').text(data.joke);
         });
 };
 
 function fetchIngredients(ingredient) {
-    
-    console.log(ingredient);
     var appUrl = ("https://www.thecocktaildb.com/api/json/v1/1/filter.php?i="+ingredient)
     return fetch(appUrl)
             .then(function (response) {
@@ -112,14 +108,10 @@ function fetchIngredients(ingredient) {
             })
             .then(function (data) {
                 var firstIngredientFilter = data;
-                console.log(firstIngredientFilter);
                 displayImg();
                 
                 function displayImg () {
                     $.each(firstIngredientFilter, function (index, value){
-                        console.log(mainDrinks)
-                        console.log(index);
-                        console.log(value);
                         if(value.length===0){
                             $("#ingredientList").empty();
                             return
@@ -132,20 +124,17 @@ function fetchIngredients(ingredient) {
                         }
                         else{
                                 $("#drinkList").empty();
-                                storedDrinks3more.length =0
-                                storedDrinks3more = storedDrinks3more.concat(mainDrinks)
+                                sotredDrinks2plus.length =0
+                                sotredDrinks2plus = sotredDrinks2plus.concat(mainDrinks)
                                 mainDrinks.length = 0
-                                console.log(mainDrinks)
-                                console.log(storedDrinks3more)
                             for (i=0; i < value.length; i++) {
                                 var drinkNameApi = value[i].strDrink;
-                                if(storedDrinks3more.includes(drinkNameApi)){
+                                if(sotredDrinks2plus.includes(drinkNameApi)){
                                     mainDrinks.push(drinkNameApi)
                                 }
                             }
                             for (i=0; i < mainDrinks.length; i++){
                                 makeAndAddButtonToGrid(mainDrinks[i]);
-                                console.log(mainDrinks)
                             }
                         }
                     })
@@ -216,10 +205,8 @@ onload = () => {
         getStarted();
         if (searchParams.get("ingredients")) {
             let paramsArray = searchParams.get("ingredients").split(",");
-            console.log(paramsArray)
             paramsArray.forEach((ingredient) => {
                 //$('#userInputIng').val(ingredient);
-                console.log(ingredient);
                 displayIngredient(ingredient.trim().toLowerCase());
             })
         }

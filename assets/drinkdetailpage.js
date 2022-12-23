@@ -100,12 +100,9 @@ $( document ).ready(function() {
     //get ingredients and quantities
     fetch("https://www.thecocktaildb.com/api/json/v1/1/search.php?s="+drinkSearch)
     .then(function (response){
-        // ingredientDisplayEl.textContent=""
         return response.json();
         })
         .then(function (data){
-        //console log drink data
-         console.log(data)
          $('#drinkTitle').text(drinkSearch) // Text for the drink name to drink title
          var picUrl = data.drinks[0].strDrinkThumb
          $('#drinkPic').attr('src', picUrl);
@@ -118,11 +115,9 @@ $( document ).ready(function() {
         const ingredients = values
             .filter(arr => arr[0].includes('strIngredient'))
             .map(arr => arr[1]);
-        console.log(ingredients);
         const quantities = values 
             .filter(arr => arr[0].includes('strMeasure'))
             .map(arr => arr[1]);
-        console.log(quantities)
         //If no quantities/measurements listed in object, kill everything and notify user
         if(quantities[0]==null){
             var newDrinkEl = document.createElement("h4")
@@ -178,12 +173,9 @@ $( document ).ready(function() {
             part = parseFloat(part)
             var partWithText = part + " part";
             quantities[i] = partWithText;
-            console.log(quantities[i])
         }
         }
-        console.log(quantities);
         var partTotal = 0;
-        console.log(partTotal)
         //Get total number of "parts"
         for (var i=0; i < quantities.length; i++){
             var loopCheckPart = quantities[i]
@@ -192,8 +184,6 @@ $( document ).ready(function() {
                 partTotal += part
                 }              
             }        
-            console.log(quantities)
-            console.log(partTotal)
 
         for (var i=0; i < quantities.length; i++){
             const loopQuan = quantities[i]
@@ -210,7 +200,6 @@ $( document ).ready(function() {
                 quantityValues[i] = loopQuan.replace("oz","")
                 quantityValues[i] = regex.exec(quantityValues[i])
                 quantityValues[i] = parseFloat(quantityValues[i])
-                console.log(quantityValues[i])
                 quantityGrams[i] = 28.3495*quantityValues[i]
             } else if (loopQuan && loopQuan.includes("tsp")){
                 quantityValues[i] = loopQuan.replace("tsp","")
@@ -282,23 +271,18 @@ $( document ).ready(function() {
                 quantityGrams[i] = 1000 *quantityValues[i]
             } else if (loopQuan === null){
                 quantities[i] = "to taste"
-                console.log(quantities[i])
                 quantityGrams[i] = 1
             }else if (loopQuan && loopQuan.includes("part")){
                 quantityValues[i] = loopQuan.replace("part","")
                 quantityValues[i] = parseFloat(quantityValues[i])
                 quantityGrams[i] = 49.61167 *quantityValues[i]
-                console.log(quantityValues[i])
             }else if (loopQuan && !/^\d+$/.test(loopQuan)) {
-                console.log(quantityValues[i])
                 quantityValues[i] = loopQuan
                 quantityValues[i] = parseFloat(quantityValues[i])
                 quantityGrams[i] = 100 *quantityValues[i]
             } 
         }
         
-        console.log(quantityValues)
-        console.log(quantityGrams)
         const calorieValues = []
         const requests = [];
 
@@ -311,7 +295,6 @@ $( document ).ready(function() {
         headers: { 'X-Api-Key': 'smrhc2mwaSeN2biihJn/rA==NcTaGc1ICaRSXdSA'},
         contentType: 'application/json',
         }));
-        console.log(ingredient)
     }
     }
 
@@ -324,7 +307,6 @@ $( document ).ready(function() {
             calorieValues.push(result[0].items[0].calories)
         }
         }
-        console.log(results)
         var caloriesArray = []
         var caloriesTotal = 0
         for(i=0;i<quantities.length;i++){
@@ -349,16 +331,13 @@ $( document ).ready(function() {
             }
         }
 
-        console.log(caloriesArray)
         maxValue = caloriesArray.reduce((max,value) => (isNaN(value) ? max:
         Math.max(max,value)), Number.NEGATIVE_INFINITY);
         maxValue = maxValue.toFixed(2)
-        console.log(maxValue)
         var caloriesEl = document.createElement("h2")
         caloriesEl.textContent=maxValue + " CALORIES"
         // ingredientDisplayEl.append(caloriesEl)
         $('#drinkCalories').append(caloriesEl)
-        console.log(caloriesArray)
         getPhrase()
 
     });
@@ -370,7 +349,6 @@ function getPhrase(){
     
 
     var phraseCals = phrasesArray[randomIndex].caloriesBurnedPer1M
-    console.log(maxValue)
     maxValue = maxValue/phraseCals
 
     if(maxValue<60){
@@ -404,14 +382,8 @@ function addGif(){
         return response.json();
         })
         .then(function (data){
-        console.log(data)
         var randomGif = Math.floor(Math.random() * 25);
-        // var gifLink = data.data[randomGif].images.downsized.url
-        // var gifEl = document.createElement("img")
-        // console.log(gifLink)
-        // gifEl.setAttribute("src", gifLink)
         $('#gif').attr("src", data.data[randomGif].images.downsized.url);
-        //ingredientDisplayEl.append(gifEl)
 })}
 
 function getFunFact(){
