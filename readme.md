@@ -29,6 +29,8 @@ This website is not currently deployed
 
 [GitHub Repository](https://github.com/smithm4949/project1_boozy)
 
+[Google Slides Presentation](https://docs.google.com/presentation/d/1IkLqO9c9xwIY30ig6c9d7hsHgZATJG_zX0P1wF2E9W8/edit#slide=id.p)
+
 ## Authors and acknowledgment
 
 The group members involved in this project are MaSandra Ewing, Alexander Carr, and Myles Smith
