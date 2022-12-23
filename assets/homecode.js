@@ -11,6 +11,10 @@ storedDrinks3more = []
 
 function goHomePg () {
     localStorage.clear();
+    $("#ingredientList").empty();
+    $("#drinkList").empty();
+    $('#clearAndIngList').attr("style", "display:none");
+    $('#pickDrink').attr("style", "display:none");
     $('#ingredientSection').attr("style", "display:none");
     $('#introCard').attr("style", "display:block");
 }

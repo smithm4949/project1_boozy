@@ -25,9 +25,9 @@ SO that I get a drink recommendation
 This website is not currently deployed
 
 ## Application Links
-[ConCocktail Deployed Application Site](placeholder)
+[ConCocktail Deployed Application Site](https://smithm4949.github.io/project1_boozy/)
 
-[GitHub Repository](placeholder)
+[GitHub Repository](https://github.com/smithm4949/project1_boozy)
 
 ## Authors and acknowledgment
 
