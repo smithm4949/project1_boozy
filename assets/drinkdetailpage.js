@@ -280,7 +280,11 @@ $( document ).ready(function() {
                 quantityValues[i] = loopQuan.replace(" L","")
                 quantityValues[i] = parseFloat(quantityValues[i])
                 quantityGrams[i] = 1000 *quantityValues[i]
-            } else if (loopQuan && loopQuan.includes("part")){
+            } else if (loopQuan === null){
+                quantities[i] = "to taste"
+                console.log(quantities[i])
+                quantityGrams[i] = 1
+            }else if (loopQuan && loopQuan.includes("part")){
                 quantityValues[i] = loopQuan.replace("part","")
                 quantityValues[i] = parseFloat(quantityValues[i])
                 quantityGrams[i] = 49.61167 *quantityValues[i]
