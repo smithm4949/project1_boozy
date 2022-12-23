@@ -17,7 +17,9 @@ function goHomePg () {
     $('#pickDrink').attr("style", "display:none");
     $('#ingredientSection').attr("style", "display:none");
     $('#introCard').attr("style", "display:block");
-}
+    mainDrinks.length = 0
+    storedDrinks3more.length = 0
+  }
 
 function clearList() {
     localStorage.clear();

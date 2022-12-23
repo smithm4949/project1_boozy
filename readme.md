@@ -25,9 +25,9 @@ SO that I get a drink recommendation
 This website is not currently deployed
 
 ## Application Links
-[ConCocktail Deployed Application Site](placeholder)
+[ConCocktail Deployed Application Site](https://smithm4949.github.io/project1_boozy/)
 
-[GitHub Repository](placeholder)
+[GitHub Repository](https://github.com/smithm4949/project1_boozy)
 
 ## Authors and acknowledgment
 
@@ -39,7 +39,8 @@ The group leader is Myles Smith. All members contributed to the following:
 * JavaScript - Vanilla JS and JQuery
 * Presentation & Pitch
 
-
+### Acknowledgment
+Sebastain Favè
 
 ## ConCocktail GIFS - as of 12/22/2022
 <img src=./assets/images/GIF.gif style="width:40rem">
