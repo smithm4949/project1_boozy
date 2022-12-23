@@ -7,7 +7,7 @@ const params = new URLSearchParams(location.search);
 //access with params.get("param")
 
 mainDrinks = []
-sotredDrinks2plus = []
+storedDrinks2plus = []
 
 function goHomePg () {
     localStorage.clear();
@@ -18,7 +18,7 @@ function goHomePg () {
     $('#ingredientSection').attr("style", "display:none");
     $('#introCard').attr("style", "display:block");
     mainDrinks.length = 0
-    sotredDrinks2plus.length = 0
+    storedDrinks2plus.length = 0
   }
 
 function clearList() {
@@ -27,7 +27,7 @@ function clearList() {
     $("#ingredientList").empty();
     $("#drinkList").empty();
     mainDrinks.length = 0;
-    sotredDrinks2plus.length = 0;
+    storedDrinks2plus.length = 0;
     params.delete("ingredients");
     location.search = `?${params.toString()}`;
 }
@@ -124,12 +124,12 @@ function fetchIngredients(ingredient) {
                         }
                         else{
                                 $("#drinkList").empty();
-                                sotredDrinks2plus.length =0
-                                sotredDrinks2plus = sotredDrinks2plus.concat(mainDrinks)
+                                storedDrinks2plus.length =0
+                                storedDrinks2plus = storedDrinks2plus.concat(mainDrinks)
                                 mainDrinks.length = 0
                             for (i=0; i < value.length; i++) {
                                 var drinkNameApi = value[i].strDrink;
-                                if(sotredDrinks2plus.includes(drinkNameApi)){
+                                if(storedDrinks2plus.includes(drinkNameApi)){
                                     mainDrinks.push(drinkNameApi)
                                 }
                             }
