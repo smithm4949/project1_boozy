@@ -1,7 +1,7 @@
 # ConCocktail
 
 ## Project status
-This project is under development
+ConCocktail application is LIVE
 
 ## Description
 
@@ -88,9 +88,10 @@ The following APIs were utilized in this application:
 *[GIPHY Developers](https://developers.giphy.com/)<br>
 *[Useless Facts](https://uselessfacts.jsph.pl/)
 
-CSS Framework:
+Framework:
 
 *[Bulma](https://bulma.io/)
+*JQuery
 
 ## Tutorials Utilized
 *[GeeksforGeeks.org](https://www.geeksforgeeks.org/javascript-trigger-a-button-on-enter-key/): Enter key trigger button <br>
