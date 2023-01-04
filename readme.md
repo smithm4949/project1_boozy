@@ -1,7 +1,7 @@
 # ConCocktail
 
 ## Project status
-ConCocktail application is LIVE
+ConCocktail application is [LIVE](https://smithm4949.github.io/project1_boozy/). There are currently no plans for further development.
 
 ## Description
 
@@ -16,13 +16,13 @@ We got you! This application will be your most important bar asset.
 
 ## User Story
 
-AS An undecesive drinker
+AS someone looking for a good night but nervous about drinks, bars, or socializing
 I want to see a list of cocktails that use certain ingredients
-SO that I get a drink recommendation
+SO that I feel prepared and confident with a drink recommendation and ice breakers
 
 ## Deployment
 
-ConCocktail is deployed
+ConCocktail is deployed live [here](https://smithm4949.github.io/project1_boozy/)
 
 ## Application Links
 [ConCocktail Deployed Application Site](https://smithm4949.github.io/project1_boozy/)
