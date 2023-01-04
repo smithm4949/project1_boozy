@@ -71,6 +71,7 @@ Drink Detail Page <br>
 ```
 ## Presentation Requirements Completed
 Reference corresponding PowerPoint presentation
+[Google Slides Presentation](https://docs.google.com/presentation/d/1IkLqO9c9xwIY30ig6c9d7hsHgZATJG_zX0P1wF2E9W8/edit#slide=id.p)
 ```
 * Elevator pitch: A one-minute description of your application.
 * Concept: What is your user story? What was your motivation for development?
@@ -91,11 +92,14 @@ The following APIs were utilized in this application:
 Framework:
 
 *[Bulma](https://bulma.io/)
-*JQuery
+*[JQuery](https://jquery.com/)
 
 ## Tutorials Utilized
 *[GeeksforGeeks.org](https://www.geeksforgeeks.org/javascript-trigger-a-button-on-enter-key/): Enter key trigger button <br>
 *[stackOverflow](https://stackoverflow.com/questions/47132232/how-to-keep-duplicates-of-an-array): Line of code for creating a new array with only duplicates
+*[jQuery](https://jquery.com/): Several tutorials for jQuery methods
+*[w3schools](https://www.w3schools.com/): Several tutorials for JavaScript tutorials
+*[Add onto Local Storage](https://stackoverflow.com/questions/12162786/adding-new-objects-to-localstorage): Add to the object in local storage.
 
 ## License
 MIT License
