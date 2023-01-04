@@ -22,7 +22,7 @@ SO that I get a drink recommendation
 
 ## Deployment
 
-This website is not currently deployed
+ConCocktail is deployed
 
 ## Application Links
 [ConCocktail Deployed Application Site](https://smithm4949.github.io/project1_boozy/)
@@ -91,15 +91,15 @@ The following APIs were utilized in this application:
 
 Framework:
 
-*[Bulma](https://bulma.io/)
-*[JQuery](https://jquery.com/)
+*[Bulma](https://bulma.io/) <br>
+*[JQuery](https://jquery.com/) <br>
 
 ## Tutorials Utilized
 *[GeeksforGeeks.org](https://www.geeksforgeeks.org/javascript-trigger-a-button-on-enter-key/): Enter key trigger button <br>
-*[stackOverflow](https://stackoverflow.com/questions/47132232/how-to-keep-duplicates-of-an-array): Line of code for creating a new array with only duplicates
-*[jQuery](https://jquery.com/): Several tutorials for jQuery methods
-*[w3schools](https://www.w3schools.com/): Several tutorials for JavaScript tutorials
-*[Add onto Local Storage](https://stackoverflow.com/questions/12162786/adding-new-objects-to-localstorage): Add to the object in local storage.
+*[stackOverflow](https://stackoverflow.com/questions/47132232/how-to-keep-duplicates-of-an-array): Line of code for creating a new array with only duplicates <br>
+*[jQuery](https://jquery.com/): Several tutorials for jQuery methods <br>
+*[w3schools](https://www.w3schools.com/): Several tutorials for JavaScript tutorials <br>
+*[Add onto Local Storage](https://stackoverflow.com/questions/12162786/adding-new-objects-to-localstorage): Add to the object in local storage. <br>
 
 ## License
 MIT License
